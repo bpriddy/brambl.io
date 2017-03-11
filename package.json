@@ -1,0 +1,61 @@
+{
+  "name": "brambl.io",
+  "version": "0.0.1",
+  "description": "Branching Narrative Script Tool",
+  "main": "build/three.js",
+  "files": [
+    "package.json",
+    "LICENSE",
+    "README.md"
+  ],
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bpriddy/brambl.io.git"
+  },
+  "keywords": [
+    "brambl",
+    "brambl.io"
+  ],
+  "author": "bpriddy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mrdoob/brambl.io/issues"
+  },
+  "homepage": "http://threejs.org/",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-babel-minify": "^0.1.12",
+    "gulp-concat": "^2.6.1",
+    "gulp-live-server": "0.0.30",
+    "gulp-plumber": "^1.1.0",
+    "gulp-pug": "^3.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.0.1",
+    "rollup": "^0.34.13",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^7.1.0",
+    "rollup-plugin-minify": "^1.0.3",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-pug": "^0.1.2",
+    "rollup-plugin-uglify": "^1.0.1",
+    "uglify-js": "^2.6.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.2",
+    "gsap": "^1.19.1",
+    "jquery": "^3.1.1",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.24",
+    "pug": "^2.0.0-beta11"
+  }
+}
