@@ -40,7 +40,8 @@ function makeNodes(script) {
 		// maxZoom: 10000,
 		zoomObject: $scriptContainer,
 		zoomSpeed: 2,
-		limitZoom: true
+		limitZoom: true,
+		excludedClasses: ['node']
 	})
 
 

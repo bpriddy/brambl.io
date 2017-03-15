@@ -101,6 +101,9 @@ class Zoomer {
 	onMouseDown(event) {
 		event.preventDefault();
 		this.mouseMoving = true;
+		this.excludedClasses.forEach((c) => {
+			if($(event.target).hasClass(c)) this.mouseMoving = false;
+		})
 		this.startingX = event.pageX - this.endingX
 		this.startingY = event.pageY - this.endingY
 		// this.rotateStart.set( event.clientX, event.clientY );
@@ -110,7 +113,7 @@ class Zoomer {
 		if ( !this.mouseMoving ) return;
 		var x = event.pageX - this.startingX - (window.innerWidth*1.5);
 		var y = event.pageY - this.startingY - (window.innerHeight*1.5);
-		console.log(x,y)
+		// console.log(x,y)
 		this.zoomObject.css({
 			left: x,
 			top: y
