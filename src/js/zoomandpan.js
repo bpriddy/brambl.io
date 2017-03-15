@@ -1,6 +1,8 @@
 import extend from 'lodash-es/extend';
 import bindAll from 'lodash-es/bindAll';
 
+import zoomandpanEl from '../pug/zoomandpan.pug';
+
 class Zoomer {
 		
 	constructor(options) {
@@ -14,13 +16,25 @@ class Zoomer {
 			'onMouseMove',
 			'onMouseUp',
 			'onMouseWheel'
-		])
+		]);
+
+		this.startingX = 0;
+		this.startingY = 0;
+		this.endingX = 0;
+		this.endingY = 0;
+		this.$el = $(zoomandpanEl());
+		$(this.parent).append(this.$el)
+		console.log(this.$el[0])
+		this.$zoomer = this.$el;
+		this.$panner = this.$el.find(".panner");
+		this.$zoomerWidth = this.$zoomer.width();
+		this.$zoomerHeight = this.$zoomer.height();
+		this.endingX = (this.$zoomerWidth/2 / this.zoom);
+		this.endingY = (this.$zoomerHeight/2 / this.zoom);
+
+
 		if(options.enabled === undefined) {
 			this.enabled = true;
-			this.startingX = 0;
-			this.startingY = 0;
-			this.endingX = 0;
-			this.endingY = 0;
 			this.setZoom()
 		}
 	}
@@ -39,14 +53,14 @@ class Zoomer {
 
 	bindEvents(bool) {
 		var method = bool ? 'addEventListener' : 'removeEventListener';
-		this.el[method]( 'touchstart', this.onTouchStart, false );
-		this.el[method]( 'touchend', this.onTouchEnd, false );
-		this.el[method]( 'touchmove', this.onTouchMove, false );
-		this.el[method]( 'mousedown', this.onMouseDown, false );
-		this.el[method]( 'mousemove', this.onMouseMove, false );
-		this.el[method]( 'mouseup', this.onMouseUp, false );
-		this.el[method]( 'mouseleave', this.onMouseUp, false );
-		this.el[method]( 'wheel', this.onMouseWheel, false );
+		this.parent[method]( 'touchstart', this.onTouchStart, false );
+		this.parent[method]( 'touchend', this.onTouchEnd, false );
+		this.parent[method]( 'touchmove', this.onTouchMove, false );
+		this.parent[method]( 'mousedown', this.onMouseDown, false );
+		this.parent[method]( 'mousemove', this.onMouseMove, false );
+		this.parent[method]( 'mouseup', this.onMouseUp, false );
+		this.parent[method]( 'mouseleave', this.onMouseUp, false );
+		this.parent[method]( 'wheel', this.onMouseWheel, false );
 	}
 
 	set enabled(value){
@@ -104,38 +118,33 @@ class Zoomer {
 		this.excludedClasses.forEach((c) => {
 			if($(event.target).hasClass(c)) this.mouseMoving = false;
 		})
-		this.startingX = event.pageX - this.endingX
-		this.startingY = event.pageY - this.endingY
-		// this.rotateStart.set( event.clientX, event.clientY );
+		let x = this.endingX / this.zoom - (this.$zoomerWidth/2 / this.zoom);
+		let y = this.endingY / this.zoom - (this.$zoomerHeight/2 / this.zoom);
+		console.log(this.endingX, this.endingY)
+
+		this.startingX = event.pageX - x;
+		this.startingY = event.pageY - y;
 	}
 	
 	onMouseMove(event) {
 		if ( !this.mouseMoving ) return;
-		var x = event.pageX - this.startingX - (window.innerWidth*1.5);
-		var y = event.pageY - this.startingY - (window.innerHeight*1.5);
+		// console.log(this.startingX, this.startingY)
+		var x = ((event.pageX - this.startingX) * this.zoom) + (this.$zoomerWidth/2);
+		var y = ((event.pageY - this.startingY) * this.zoom) + (this.$zoomerHeight/2);
 		// console.log(x,y)
-		this.zoomObject.css({
+		this.$panner.css({
 			left: x,
 			top: y
 		})
-		this.endingX = x + (window.innerWidth*1.5);
-		this.endingY = y + (window.innerHeight*1.5);
+		this.endingX = x// / this.zoom - (this.$zoomerWidth/2 / this.zoom);
+		this.endingY = y// / this.zoom - (this.$zoomerHeight/2 / this.zoom);
+		// console.log(this.endingX, this.endingY)
 		event.preventDefault();
 
-		// this.rotateEnd.set( event.clientX, event.clientY );
-		// this.rotateDelta.subVectors( this.rotateEnd, this.rotateStart );
-		// this.rotateLeft( 2 * Math.PI * this.rotateDelta.x / this.el.clientWidth  * this.rotateSpeed );
-		// this.rotateUp( 2 * Math.PI * this.rotateDelta.y   / this.el.clientHeight * this.rotateSpeed );
-		// this.rotateStart.copy( this.rotateEnd );
-		// this.update();
 	}
 
 	onMouseUp(event) {
 		this.mouseMoving = false;
-		
-		// document.removeEventListener( 'mousemove', onMouseMove, false );
-		// document.removeEventListener( 'mouseup', onMouseUp, false );
-		// scope.dispatchEvent( endEvent );
 	}
 
 	set speed(val) {
@@ -143,15 +152,15 @@ class Zoomer {
 	}
 
 	setZoom() {
-		this.zoomObject.css({
+
+		this.$zoomer.css({
 			// "transform": `perspective(${window.innerWidth}px) translate3d(0,0,-${window.innerWidth*(this.zoom-1)}px)`
 			"transform": `scale(${1/this.zoom})`
-			// "transform": `perspective(${window.innerWidth}px) translate3d(0,0,-${window.innerWidth/2*this.zoom}px)`
 		})
 	}
 
 	update() {
-		if(this.zoomObject && this.zoomEnabled) {
+		if(this.$el && this.zoomEnabled) {
 			this.zoomDelta *= this.dampingFactor;
 			var targ = this.zoom - this.zoomDelta * 0.01 * this.zoomSpeed;
 			if(targ < this.minZoom && this.limitZoom) {

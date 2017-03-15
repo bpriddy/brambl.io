@@ -15,13 +15,24 @@ div
 	height: 100%
 	width: 100%
 	// overflow: hidden
-
-	.origin
+	.script-container
 		position: absolute
-		height: 400%
-		width: 400%
-		left: -150%
-		top: -150%
-		border: 2px solid black
-		transform: perspective(1000px) translate3d(0, 0, 0px)
+		top: 0
+		left: 0
+		height: 100%
+		width: 100%
+		border: 3px solid red
+		.zoomer
+			position: absolute
+			height: 400%
+			width: 400%
+			left: -150%
+			top: -150%
+			border: 2px solid black
+			// transform: perspective(1000px) translate3d(0, 0, 0px)
+
+			.panner
+				position: absolute
+				top: 50%
+				left: 50%
 

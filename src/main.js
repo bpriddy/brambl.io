@@ -1,8 +1,9 @@
 'use strict';
 
-import container from './pug/script.pug';
 import Node from './js/textnode.js'
 import ZoomAndPan from './js/zoomandpan.js'
+
+import scriptEl from './pug/script.pug';
 
 let script = {};
 const nodes = [];
@@ -10,10 +11,10 @@ let $scriptContainer = null;
 let $appEl = null;
 let zoomandpan = null;
 
-const zoom = 4
+const zoom = 1
 
 $(() => {
-	$scriptContainer = $(container());
+	$scriptContainer = $(scriptEl());
 	$appEl = $("#app");
 	$appEl.append($scriptContainer)
 	$.get("/api/script", (resp) => {
@@ -28,17 +29,11 @@ function makeNodes(script) {
 	// console.log(script)
 
 	zoomandpan = new ZoomAndPan({
-		el: $appEl[0], 
+		parent: $scriptContainer[0], 
 		zoom: zoom,
-		container: $scriptContainer,
 		dampingFactor: 0.9,
-		// rotateSpeed: 5,
-		// maxPhi: 0.2,
-		// minZoom: 45,
 		minZoom: 1,
-		maxZoom: 4,
-		// maxZoom: 10000,
-		zoomObject: $scriptContainer,
+		maxZoom: 5,
 		zoomSpeed: 2,
 		limitZoom: true,
 		excludedClasses: ['node']
@@ -51,7 +46,7 @@ function makeNodes(script) {
 			data: node,
 			zoomandpan: zoomandpan,
 			$appEl: $appEl,
-			$container: $scriptContainer
+			$container: zoomandpan.$panner
 		}))
 	})
 

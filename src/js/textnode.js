@@ -28,10 +28,12 @@ class TextNode {
 		this.dragOffsetX = this.$container[0].getBoundingClientRect().left
 		this.dragOffsetY = this.$container[0].getBoundingClientRect().top
 		this.$appEl.bind("mousemove", this.drag);
+		this.$el.css({'zIndex': 1000})
 	}
 
 	stopDrag() {
 		this.$appEl.unbind("mousemove", this.drag);
+		this.$el.css({'zIndex': 1})
 	}
 
 	drag(e) {
