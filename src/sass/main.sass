@@ -4,6 +4,24 @@ html
 	height: 100%
 	width: 100%
 
-	div
-		margin: 0
-		padding 0
+div
+	margin: 0
+	padding 0
+
+#app
+	position: absolute
+	top: 0
+	left: 0
+	height: 100%
+	width: 100%
+	// overflow: hidden
+
+	.origin
+		position: absolute
+		height: 400%
+		width: 400%
+		left: -150%
+		top: -150%
+		border: 2px solid black
+		transform: perspective(1000px) translate3d(0, 0, 0px)
+

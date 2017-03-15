@@ -9,7 +9,7 @@ var MongoClient = require('mongodb').MongoClient;
 var MongoClient = require('mongodb').MongoClient
 var url = 'mongodb://localhost/brambl_test';
 
-var script = require("./db/script_4_1.json");
+var script = require("./db/script_4_1.js");
 
 
 router.get('/script/', 
@@ -24,8 +24,7 @@ router.get('/script/',
 		MongoClient.connect(url, function (err, db) {
 			if (err) throw err
 
-			// db.collection('nodes').insert(script)
-
+			// db.collection('nodes').insert(script.script)
 
 			db.collection('nodes').find().toArray(function (err, result) {
 				if (err) throw err

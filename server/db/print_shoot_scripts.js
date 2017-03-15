@@ -25,12 +25,14 @@ function createBranch(node) {
 		incoming: []
 	}
 	node.incoming.forEach((idx) => {
-		chunk.incoming.push(map[idx].text);
+		chunk.incoming.push(map[idx].label + ": "+map[idx].text);
 	})
 	recurse(node);
 	function recurse(n) {
 		// console.log(n.text)
-		chunk.lines.push(n.text);
+		var txt = n.text;
+		if(n.label === "ending") txt = "ending: "+txt
+		chunk.lines.push(txt);
 		var matched = false;
 		n.outgoing.forEach((idx) => {
 			if(n.label === map[idx].label || map[idx].label === "ending") {
@@ -56,7 +58,7 @@ Object.keys(map).forEach((node) => {
 })
 
 Object.keys(branches).forEach((name) => {
-	shootScript += "\n\n\n\n\n\n==============================\n";
+	shootScript += "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n==============================\n";
 	shootScript += name.toUpperCase()+"\n";
 	shootScript += "==============================\n\n\n";
 	branches[name].forEach((node, idx) => {

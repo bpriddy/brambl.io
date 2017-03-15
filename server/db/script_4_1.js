@@ -1571,7 +1571,7 @@ module.exports = {
 		},
 		{
 			"id": 325,
-			"text": "and with the Claire had forgotten to share the news with the group and was already headed upstairs. &nbsp;A few subtle shifts in the the exchange between them&nbsp;and large plot points make it into the conversation&nbsp;or get left out.",
+			"text": "and with that, Claire had forgotten to share the news with the group and was already headed upstairs. &nbsp;A few subtle shifts in the the exchange between them&nbsp;and large plot points make it into the conversation&nbsp;or get left out.",
 			"incoming": [
 				70
 			],
