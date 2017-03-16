@@ -41,13 +41,8 @@ router.post('/script/update',
 			delete data[idx]._id;
 			
 			db.collection('nodes').update(query, data[idx], {w:1}, (err, result) => {
-				if (err) throw err
-				// console.log(result)
-				// var obj = {
-				// 	response: JSON.stringify(result)
-				// }
+				if (err) throw err;
 				
-				// res.send(obj);
 				if(idx<data.length-1) {
 					idx++;
 					update(idx);

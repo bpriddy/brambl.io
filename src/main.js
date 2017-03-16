@@ -1,6 +1,7 @@
 'use strict';
 
 import TextNode from './js/textnode.js';
+import Lines from './js/lines.js';
 import ZoomAndPan from './js/zoomandpan.js';
 import ControlPanel from './js/controlpanel.js';
 import DataManager from './js/datamanager.js';
@@ -10,7 +11,8 @@ import scriptEl from './pug/script.pug';
 import events from 'backbone-events-standalone';
 
 let script = {};
-const nodes = [];
+let lines = null;
+const nodes = {};
 let $scriptContainer = null;
 let $appEl = null;
 let zoomandpan = null;
@@ -25,7 +27,7 @@ $(() => {
 	$appEl.append($scriptContainer)
 	$.get("/api/script", (resp) => {
 		script = JSON.parse(resp.response);
-		console.log(script[script.length - 1].position)
+		// console.log(script[script.length - 1].position)
 		makeNodes(script)
 	})
 
@@ -52,13 +54,19 @@ function makeNodes(script) {
 
 	script.forEach((node) => {
 		// console.log(node.label)
-		nodes.push(new TextNode({
+		nodes[node.id] = new TextNode({
 			data: node,
 			zoomandpan: zoomandpan,
 			$appEl: $appEl,
 			$container: zoomandpan.$panner,
 			events: events
-		}))
+		});
+	})
+
+	lines = new Lines({
+		nodes: nodes,
+		$parent: zoomandpan.$panner,
+		events: events
 	})
 
 	controlpanel = new ControlPanel({

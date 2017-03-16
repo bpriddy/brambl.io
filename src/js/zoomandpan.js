@@ -24,7 +24,6 @@ class Zoomer {
 		this.endingY = 0;
 		this.$el = $(zoomandpanEl());
 		$(this.parent).append(this.$el)
-		console.log(this.$el[0])
 		this.$zoomer = this.$el;
 		this.$panner = this.$el.find(".panner");
 		this.$zoomerWidth = this.$zoomer.width();
