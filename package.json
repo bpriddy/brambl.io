@@ -49,6 +49,7 @@
     "uglify-js": "^2.6.0"
   },
   "dependencies": {
+    "backbone-events-standalone": "^0.2.7",
     "body-parser": "^1.17.1",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",

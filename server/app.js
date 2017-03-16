@@ -5,9 +5,11 @@ const bodyParser = require('body-parser')
 const fs = require('fs')
 
 const app = express()
-const router = express.Router()
+module.exports = app;
 
 const api = require('./api');
+
+
 app.use('/api', api);
 app.set('views', path.join(__dirname, 'templates'))
 app.set('view engine', 'pug')
@@ -20,9 +22,6 @@ var CDN = path.join(__dirname, '/../build');
 app.use('/assets', express.static( CDN ))
 
 
-app.listen( 3000 );
-
-
 app.get('/', 
 	(req, res) => {
 		res.render('index', {
@@ -31,3 +30,16 @@ app.get('/',
 		});
 	}
 )
+
+
+
+var MongoClient = require('mongodb').MongoClient;
+var url = 'mongodb://localhost/brambl_test';
+
+MongoClient.connect(url, function (err, db) {
+	if (err) throw err
+	// db.collection('nodes').insert(script.script)
+	app.set("db", db)
+	app.listen( 3000 );
+});
+

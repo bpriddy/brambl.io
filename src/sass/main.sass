@@ -3,10 +3,25 @@ html
 	padding: 0
 	height: 100%
 	width: 100%
+	font-family: sans-serif
 
 div
 	margin: 0
 	padding 0
+
+.btn 
+	padding: 10px
+	background: #a6f7d0
+	border: thin solid #82dbb0
+	text-align: center
+	font-size: 13px
+	transition: background ease-in-out 400ms
+	cursor: pointer
+	&:hover
+		background: #5ae2a1
+	&:active
+		background: #3ec282
+		transition: background ease-in-out 100ms
 
 #app
 	position: absolute
@@ -21,18 +36,40 @@ div
 		left: 0
 		height: 100%
 		width: 100%
-		border: 3px solid red
-		.zoomer
+		.control-panel
 			position: absolute
-			height: 400%
-			width: 400%
-			left: -150%
-			top: -150%
-			border: 2px solid black
-			// transform: perspective(1000px) translate3d(0, 0, 0px)
-
-			.panner
+			top: 40px
+			right: 40px
+			height: 500px
+			width: 200px
+			padding: 20px
+			// border: thin solid #777
+			background: #eee
+			.title
+				position: relative
+				text-transform: uppercase
+				text-align: center
+				font-weight: bold
+				margin-bottom: 30px
+				padding-bottom: 14px
+				border-bottom: 2px solid white
+		.stage
+			position: absolute
+			top: 0
+			left: 0
+			height: 100%
+			width: 100%
+			.zoomer
 				position: absolute
-				top: 50%
-				left: 50%
+				height: 400%
+				width: 400%
+				left: -150%
+				top: -150%
+				border: 2px solid black
+				// transform: perspective(1000px) translate3d(0, 0, 0px)
+
+				.panner
+					position: absolute
+					top: 50%
+					left: 50%
 

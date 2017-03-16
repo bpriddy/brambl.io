@@ -6,6 +6,7 @@ var plumber = require('gulp-plumber');
 var rollup = require('rollup');
 var pug = require('rollup-plugin-pug');
 var resolve = require('rollup-plugin-node-resolve');
+var commonjs = require('rollup-plugin-commonjs');
 var uglify = require('rollup-plugin-uglify');
 // var minify = require('rollup-plugin-minify');
 var minify = require('gulp-babel-minify');
@@ -32,6 +33,7 @@ gulp.task('vendor', function() {
 					main: true,
 					browser: true
 				}),
+				// commonjs(),
 				babel({
 					exclude: 'node_modules/**',
 			    }),
@@ -62,6 +64,7 @@ gulp.task("js", function() {
 					main: true,
 					browser: true
 				}),
+				commonjs(),
 				babel({
 					exclude: 'node_modules/**',
 			    }),
