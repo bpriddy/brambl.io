@@ -43,12 +43,11 @@ class TextNode {
 	}
 
 	drag(e) {
-		// console.log(e.currentTarget)
 		this.data.position.left = (e.pageX * this.zoomandpan.zoom) - (this.dragOffsetX * this.zoomandpan.zoom);
 		this.data.position.top = (e.pageY * this.zoomandpan.zoom) - (this.dragOffsetY * this.zoomandpan.zoom);
-
-
-		this.$el.css({left: this.data.position.left, top: this.data.position.top})
+		this.$el.css({left: this.data.position.left, top: this.data.position.top});
+		
+		this.events.trigger('node:move', this);
 	}
 }
 

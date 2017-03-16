@@ -45,7 +45,7 @@ function makeNodes(script) {
 		zoom: zoom,
 		dampingFactor: 0.9,
 		minZoom: 1,
-		maxZoom: 6,
+		maxZoom: 10,
 		zoomSpeed: 2,
 		limitZoom: true,
 		excludedClasses: ['node']
