@@ -21,7 +21,7 @@ router.get('/script/',
 				response: JSON.stringify(result)
 			}
 			
-			res.send(obj);
+			res.send(obj); 
 
 		})
 		

@@ -22,9 +22,11 @@ class TextNode {
 		bindAll(this, [
 			'startDrag',
 			'drag',
-			'stopDrag'
+			'stopDrag',
+			'onNodeSelect'
 		])
 		this.$el.on("mousedown", this.startDrag);
+		this.events.on("node:select", this.onNodeSelect)
 	}
 
 	startDrag(e) {
@@ -33,6 +35,8 @@ class TextNode {
 		this.$appEl.bind("mousemove", this.drag);
 		this.$appEl.bind("mouseup", this.stopDrag);
 		this.$el.css({'zIndex': 1000})
+		this.$el.addClass("selected")
+		this.events.trigger("node:select", this.data.id)
 	}
 
 	stopDrag() {
@@ -48,6 +52,12 @@ class TextNode {
 		this.$el.css({left: this.data.position.left, top: this.data.position.top});
 		
 		this.events.trigger('node:move', this);
+	}
+
+	onNodeSelect(id) {
+		if(id !== this.data.id) {
+			this.$el.removeClass("selected")
+		}
 	}
 }
 

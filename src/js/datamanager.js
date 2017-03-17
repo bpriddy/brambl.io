@@ -7,7 +7,7 @@ class DataManager {
 		extend(this, options);
 		this.changed = [];
 		this.events.on("node:update", (e) => {
-			console.log('node change',e)
+			// console.log('node change',e)
 			this.changed.push(e);
 		})
 
