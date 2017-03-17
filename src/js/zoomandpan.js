@@ -117,7 +117,7 @@ class Zoomer {
 		this.excludedClasses.forEach((c) => {
 			if($(event.target).hasClass(c)) this.mouseMoving = false;
 		})
-		if(this.mouseMoving) this.events.trigger("node:select", -1);
+		if(this.mouseMoving) this.events.trigger("node:select", {data:{id:-1}});
 		let x = this.endingX / this.zoom - (this.$zoomerWidth/2 / this.zoom);
 		let y = this.endingY / this.zoom - (this.$zoomerHeight/2 / this.zoom);
 		// console.log(this.endingX, this.endingY)

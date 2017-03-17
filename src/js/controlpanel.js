@@ -9,7 +9,8 @@ class ControlPanel {
 		extend(this, options);
 		bindAll(this, [
 			'bindEvents',
-			'saveChanges'
+			'saveChanges',
+			'showSelectedNode'
 		])
 		this.create();
 		this.bindEvents();
@@ -21,10 +22,16 @@ class ControlPanel {
 
 	bindEvents() {
 		this.$parent.find(".save.btn").on("click", this.saveChanges)
+		this.events.on("node:select", this.showSelectedNode)
 	}
 
 	saveChanges() {
 		this.events.trigger("savechanges")
+	}
+
+	showSelectedNode(node) {
+
+		this.$parent.find(".selected-node").html(node.data.text)
 	}
 }
 

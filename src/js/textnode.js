@@ -36,7 +36,7 @@ class TextNode {
 		this.$appEl.bind("mouseup", this.stopDrag);
 		this.$el.css({'zIndex': 1000})
 		this.$el.addClass("selected")
-		this.events.trigger("node:select", this.data.id)
+		this.events.trigger("node:select", this)
 	}
 
 	stopDrag() {
@@ -54,8 +54,8 @@ class TextNode {
 		this.events.trigger('node:move', this);
 	}
 
-	onNodeSelect(id) {
-		if(id !== this.data.id) {
+	onNodeSelect(node) {
+		if(node.data.id !== this.data.id) {
 			this.$el.removeClass("selected")
 		}
 	}
