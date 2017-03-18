@@ -25,7 +25,8 @@ class Script {
 			'load',
 			'create',
 			'showLabelBranch',
-			'handleNodeSelect'
+			'handleNodeSelect',
+			'showUnfinished'
 		])
 		this.content = {
 			data: {},
@@ -85,6 +86,7 @@ class Script {
 
 		this.events.on("node:select", this.handleNodeSelect)
 		this.events.on("node:show:labelbranch", this.showLabelBranch)
+		this.events.on("node:show:unfinished", this.showUnfinished);
 
 		lines = new Lines({
 			nodes: this.content.nodes,
@@ -121,8 +123,20 @@ class Script {
 		recurse(obj.node.data.id)
 	}
 
-	sendNodesBack() {
+	showUnfinished(bool) {
+		let keys = {};
+
 		Object.keys(this.content.nodes).forEach((key) => {
+			if(this.content.nodes[key].data.label === "ending") return;
+			if(this.content.nodes[key].data.outgoing.length === 4) keys[key] = 1;
+		})
+
+		this.sendNodesBack(keys)
+	}
+
+	sendNodesBack(arr) {
+		let keys = (arr) ? arr : this.content.nodes;
+		Object.keys(keys).forEach((key) => {
 			this.content.nodes[key].sendBack()
 		})
 	}

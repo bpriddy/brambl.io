@@ -14,12 +14,14 @@ class ControlPanel {
 			'showDescendants',
 			'showAncestors',
 			'showLabelBranch',
+			'showUnfinished',
 			'editText'
 		])
 		this.state = {
 			showingDescendants: false,
 			showingAncestors: false,
 			showingLabelBranch: false,
+			showingUnfinishedBranches: false,
 			currentNode: null
 		}
 		this.create();
@@ -33,6 +35,7 @@ class ControlPanel {
 
 	bindEvents() {
 		this.$parent.find(".save.btn").on("click", this.saveChanges)
+		this.$parent.find(".btn.showunfinished").on("click", this.showUnfinished)
 		this.events.on("node:select", this.showSelectedNode)
 		this.$selectedNode.find(".btn.descendants").on("click", this.showDescendants)
 		this.$selectedNode.find(".btn.ancestors").on("click", this.showAncestors)
@@ -76,6 +79,18 @@ class ControlPanel {
 		this.events.trigger("node:show:ancestors", {
 			node: this.state.currentNode,
 			show: this.state.showAncestors
+		})
+	}
+
+	showUnfinished(e) {
+		if(!this.state.showingUnfinishedBranches) {
+			this.$selectedNode.find(".btn.showunfinished").addClass("selected")
+		} else {
+			this.$selectedNode.find(".btn.showunfinished").removeClass("selected")
+		}
+		this.state.showingUnfinishedBranches = !this.state.showingUnfinishedBranches;
+		this.events.trigger("node:show:unfinished", {
+			show: this.state.showingUnfinishedBranches
 		})
 	}
 
