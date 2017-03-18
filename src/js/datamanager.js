@@ -8,7 +8,14 @@ class DataManager {
 		this.changed = [];
 		this.events.on("node:update", (e) => {
 			// console.log('node change',e)
-			this.changed.push(e);
+			var matched = false;
+			this.changed.forEach((node) => {
+				if(node.id === e.id) {
+					node = e;
+					matched = true;
+				}
+			})
+			if(!matched) this.changed.push(e);
 		})
 
 		this.events.on("savechanges", () => {

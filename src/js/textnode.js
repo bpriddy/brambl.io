@@ -14,7 +14,7 @@ class TextNode {
 
 	create() {
 		let style = `left: ${this.data.position.left}px; top: ${this.data.position.top}px`;
-		this.$el = $(`<div class='node ${this.data.label}' data-id='${this.data.id}' style='${style}'>${this.data.id}::: ${this.data.text}</div>`);
+		this.$el = $(`<div class='node ${this.data.label}' data-id='${this.data.id}' style='${style}'>${this.data.text}</div>`);
 		this.$container.append(this.$el);
 	}
 
@@ -59,6 +59,15 @@ class TextNode {
 			this.$el.removeClass("selected")
 		}
 	}
+
+	sendBack() {
+		this.$el.addClass("unfocus")
+	}
+
+	bringForward() {
+		this.$el.removeClass("unfocus")
+	}
+
 }
 
 export default TextNode;

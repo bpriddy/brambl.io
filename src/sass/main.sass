@@ -15,17 +15,28 @@ svg
 
 .btn 
 	padding: 10px
-	background: #a6f7d0
-	border: thin solid #82dbb0
 	text-align: center
 	font-size: 13px
 	transition: background ease-in-out 400ms
 	cursor: pointer
+	background: white
+	border: thin solid #eee
 	&:hover
-		background: #5ae2a1
+		background: #eee
 	&:active
-		background: #3ec282
+		background: #ccc
 		transition: background ease-in-out 100ms
+	&.selected
+		background: #bbb
+
+		
+	&.save
+		background: #a6f7d0
+		border: thin solid #82dbb0
+		&:hover
+			background: #5ae2a1
+		&:active
+			background: #3ec282
 
 #app
 	position: absolute

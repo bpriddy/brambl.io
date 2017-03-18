@@ -5,8 +5,7 @@
 	height: 500px
 	width: 200px
 	padding: 20px
-	// border: thin solid #777
-	background: #eee
+	background: #ddd
 	.title
 		position: relative
 		text-transform: uppercase
@@ -17,3 +16,13 @@
 		border-bottom: 2px solid white
 	.selected-node
 		margin-top: 20px
+		position: relative
+		display: none
+		&.selected
+			display: block
+		.text
+			padding: 15px
+			border: thin solid white
+			margin-bottom: 20px
+		.btn
+			margin-bottom: 10px

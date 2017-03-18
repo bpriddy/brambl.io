@@ -12,11 +12,20 @@ class Lines {
 			'onNodeMove',
 			'positionLine',
 			'moveIncomingLines',
-			'moveOutgoingLines'
+			'moveOutgoingLines',
+			'showNodeLines',
+			'highlightDescendants',
+			'highlightAncestors',
+			'highlightLabelBranch'
 		])
+		this.state = {}
 		this.create()
 		console.log(this.events)
 		this.events.on("node:move", this.onNodeMove)
+		this.events.on("node:select", this.showNodeLines)
+		this.events.on("node:show:descendants", this.highlightDescendants)
+		this.events.on("node:show:ancestors", this.highlightAncestors)
+		this.events.on("node:show:labelbranch", this.highlightLabelBranch)
 	}
 
 	create() {
@@ -124,6 +133,86 @@ class Lines {
 			)
 		})
 	}
+
+	showNodeLines(node) {
+		Object.keys(this.lines).forEach((key1) => {
+			Object.keys(this.lines[key1]).forEach((key2) => {
+				this.highlightLine(key1, key2, false)
+			})
+		})
+
+		if(node.data.id !== -1) {
+			node.data.outgoing.forEach((key2) => {
+				this.highlightLine(node.data.id, key2, true)
+			})
+		}
+	}
+
+	highlightLine(k1,k2,bool) {
+		let stroke = (bool) ? 16 : 2;
+		this.lines[k1][k2].$svg.find("line").attr("stroke-width", stroke)
+	}
+
+	highlightDescendants(obj) {
+		Object.keys(this.lines).forEach((key1) => {
+			Object.keys(this.lines[key1]).forEach((key2) => {
+				this.highlightLine(key1, key2, false)
+			})
+		})
+		let dict = {}
+		let recurse = (key1) => {
+			if(dict[key1]) return;
+			dict[key1] = true;
+			Object.keys(this.lines[key1]).forEach((key2) => {
+				this.highlightLine(key1, key2, true)
+				recurse(key2)
+			})
+		}
+		recurse(obj.node.data.id)
+	}
+
+	highlightAncestors(obj) {
+		Object.keys(this.lines).forEach((key1) => {
+			Object.keys(this.lines[key1]).forEach((key2) => {
+				this.highlightLine(key1, key2, false)
+			})
+		})
+		let dict = {}
+		let recurse = (key1) => {
+			Object.keys(this.lines).forEach((key) => {
+				if(this.lines[key][key1]) {
+					this.highlightLine(key, key1, true)
+					if(dict[key+":"+key1]) return;
+					dict[key+":"+key1] = true;
+					recurse(key)
+				}
+				
+			})
+		}
+		recurse(obj.node.data.id)
+	}
+
+	highlightLabelBranch(obj) {
+		Object.keys(this.lines).forEach((key1) => {
+			Object.keys(this.lines[key1]).forEach((key2) => {
+				this.highlightLine(key1, key2, false)
+			})
+		})
+		let recurse = (key1) => {
+			Object.keys(this.lines[key1]).forEach((key2) => {
+				if(
+					this.nodes[key2].data.label === obj.node.data.label ||
+					this.nodes[key2].data.label === "ending"
+				) {
+					this.highlightLine(key1, key2, true)
+					recurse(key2)
+				}
+			})
+		}
+		recurse(obj.node.data.id)
+	}
+
+
 
 }
 
