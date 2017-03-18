@@ -127,8 +127,12 @@ class Script {
 		let keys = {};
 
 		Object.keys(this.content.nodes).forEach((key) => {
-			if(this.content.nodes[key].data.label === "ending") return;
-			if(this.content.nodes[key].data.outgoing.length === 4) keys[key] = 1;
+			if(
+				this.content.nodes[key].data.label === "ending" ||
+				this.content.nodes[key].data.outgoing.length === 4
+			) {
+				keys[key] = 1;
+			}
 		})
 
 		this.sendNodesBack(keys)
