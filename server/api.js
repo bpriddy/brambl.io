@@ -53,19 +53,52 @@ router.post('/script/update',
 
 		}
 
+		let toDelete = JSON.parse(req.body.deleted);
+		if(toDelete.length) remove(0);
+		function remove(idx) {
+			let query = {
+				id: toDelete[idx]
+			}
+			toDelete.shift();
+			console.log(query);
+			// db.collection('nodes').remove(query, (err, result) => {
+			// 	if (err) throw err;
+				
+			// 	if(idx<data.length-1) {
+			// 		idx++;
+			// 		update(idx);
+			// 	} else {
+			// 		res.send("success");
+			// 	}
+			// });
+		}
 
-		// db.collection('nodes').update(query, update, {w:1, multi: true}, (err, result) => {
-		// 	if (err) throw err
-		// 	var obj = {
-		// 		response: JSON.stringify(result)
-		// 	}
-			
-		// 	res.send(obj);
-		// });
 
 	}
 
 )
 
+router.post('/script/delete',
+	(req, res) => {
+		let db = app.get("db");
+		
+		let query = {
+			id: req.body.id
+		}
+		console.log(query);
+			// db.collection('nodes').remove(query, (err, result) => {
+			// 	if (err) throw err;
+				
+			// 	if(idx<data.length-1) {
+			// 		idx++;
+			// 		update(idx);
+			// 	} else {
+			// 		res.send("success");
+			// 	}
+			// });
+		
+	}
+
+)
 
 module.exports = router;

@@ -26,7 +26,8 @@ class Script {
 			'create',
 			'showLabelBranch',
 			'handleNodeSelect',
-			'showUnfinished'
+			'showUnfinished',
+			'deleteNode'
 		])
 		this.content = {
 			data: {},
@@ -35,7 +36,10 @@ class Script {
 		}
 		this.data = [];
 		this.load()
-			.then(this.create);
+			.then(() => {
+				this.create();
+				this.bindEvents();
+			});
 	}
 
 	load() {
@@ -85,11 +89,6 @@ class Script {
 			});
 		})
 
-
-		this.events.on("node:select", this.handleNodeSelect)
-		this.events.on("node:show:labelbranch", this.showLabelBranch)
-		this.events.on("node:show:unfinished", this.showUnfinished);
-
 		lines = new Lines({
 			nodes: this.content.nodes,
 			nodeBranchMap: this.content.nodeBranchMap,
@@ -101,6 +100,20 @@ class Script {
 			$parent: $scriptContainer.find(".control-panel"),
 			events: this.events
 		})
+	}
+
+	bindEvents() {
+		this.events.on("node:select", this.handleNodeSelect)
+		this.events.on("node:show:labelbranch", this.showLabelBranch)
+		this.events.on("node:show:unfinished", this.showUnfinished);
+		this.events.on("node:delete", this.deleteNode);
+	}
+
+	deleteNode(e) {
+		console.log(e)
+		this.content.nodes[e].remove();
+		delete this.content.nodes[e];
+		console.log(this.content.data[e])
 	}
 
 	handleNodeSelect(node) {
@@ -130,15 +143,24 @@ class Script {
 
 		Object.keys(this.content.nodes).forEach((key) => {
 			let og = this.content.nodes[key].data.outgoing;
-			if(og.length) console.log(og.length, this.content.nodes[og[0]]);
+			if(og.length > 4) {
+				console.log(og);
+				var str = "";
+				og.forEach((key) => {
+					str += " "+this.content.nodes[key].data.label;
+				})
+				console.log(str)
+				// console.log(og, this.content.nodes[key].data.label, og.length === 4, og.length === 1, this.content.nodes[og[0]].data.label === "ending");
+			}
 			if(
-				this.content.nodes[key].data.label === "ending" ||
-				og.length === 4 ||
-				(
-					og.length === 1 &&
-					this.content.nodes[og[0]].data.label === "ending"
+				// this.content.nodes[key].data.label === "ending" ||
+				// og.length === 4 ||
+				// (
+				// 	og.length === 1 &&
+				// 	this.content.nodes[og[0]].data.label === "ending"
 
-				)
+				// )
+				og.length <= 4
 			) {
 				keys[key] = 1;
 			}

@@ -58,7 +58,7 @@ class Zoomer {
 		this.parent[method]( 'mousedown', this.onMouseDown, false );
 		this.parent[method]( 'mousemove', this.onMouseMove, false );
 		this.parent[method]( 'mouseup', this.onMouseUp, false );
-		this.parent[method]( 'mouseleave', this.onMouseUp, false );
+		// this.parent[method]( 'mouseleave', this.onMouseUp, false );
 		this.parent[method]( 'wheel', this.onMouseWheel, false );
 	}
 
@@ -116,8 +116,9 @@ class Zoomer {
 		this.mouseMoving = true;
 		this.excludedClasses.forEach((c) => {
 			if($(event.target).hasClass(c)) this.mouseMoving = false;
+
 		})
-		if(this.mouseMoving) this.events.trigger("node:select", {data:{id:-1}});
+		if(!this.mouseMoving) this.nodeSelected = true;
 		let x = this.endingX / this.zoom - (this.$zoomerWidth/2 / this.zoom);
 		let y = this.endingY / this.zoom - (this.$zoomerHeight/2 / this.zoom);
 		// console.log(this.endingX, this.endingY)
@@ -128,6 +129,7 @@ class Zoomer {
 	
 	onMouseMove(event) {
 		if ( !this.mouseMoving ) return;
+		this.mouseMoved = true;
 		// console.log(this.startingX, this.startingY)
 		var x = ((event.pageX - this.startingX) * this.zoom) + (this.$zoomerWidth/2);
 		var y = ((event.pageY - this.startingY) * this.zoom) + (this.$zoomerHeight/2);
@@ -145,6 +147,9 @@ class Zoomer {
 
 	onMouseUp(event) {
 		this.mouseMoving = false;
+		if(!this.mouseMoved && !this.nodeSelected) this.events.trigger("node:select", {data:{id:-1}});
+		this.mouseMoved = false;
+		this.nodeSelected = false;
 	}
 
 	set speed(val) {

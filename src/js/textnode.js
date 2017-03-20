@@ -9,7 +9,7 @@ class TextNode {
 			this.data.position = { left: 0, top: 0};
 		}
 		this.create();
-		this.bind();
+		this.bindEvents();
 	}
 
 	create() {
@@ -18,15 +18,25 @@ class TextNode {
 		this.$container.append(this.$el);
 	}
 
-	bind() {
+	bindEvents() {
 		bindAll(this, [
 			'startDrag',
 			'drag',
 			'stopDrag',
-			'onNodeSelect'
+			'onNodeSelect',
+			'remove',
+			'breakRefs',
+			'killDOM'
 		])
-		this.$el.on("mousedown", this.startDrag);
-		this.events.on("node:select", this.onNodeSelect);
+		this.$el.bind("mousedown", this.startDrag);
+		this.events.bind("node:select", this.onNodeSelect);
+	}
+
+	unbindEvents() {
+		this.$appEl.unbind("mousemove", this.drag);
+		this.$appEl.unbind("mouseup", this.stopDrag);
+		this.$el.unbind("mousedown", this.startDrag);
+		this.events.unbind("node:select", this.onNodeSelect);
 	}
 
 	startDrag(e) {
@@ -70,6 +80,29 @@ class TextNode {
 
 	bringForward() {
 		this.$el.removeClass("unfocus")
+	}
+
+	remove() {
+		console.log(this);
+		this.unbindEvents();
+		this.killDOM();
+		this.breakRefs();
+	}
+
+	killDOM() {
+		this.$el.remove();
+	}
+
+	breakRefs() {
+		this.data = null;
+		this.zoomandpan = null;
+		this.$appEl = null;
+		this.$container = null;
+		this.events = null;
+		this.$el = null;
+		Object.keys(this).forEach((key) => {
+			delete this[key];
+		})
 	}
 
 }

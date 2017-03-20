@@ -42,6 +42,7 @@ class Lines {
 					source: this.nodes[key].data.id,
 					dest: this.nodes[idx].data.id,
 				}));
+				$svg.on("click", (e) => {console.log('dogs')})
 				this.$parent.prepend($svg);
 
 				this.positionLine($svg, x1,y1, x2,y2);
@@ -79,6 +80,7 @@ class Lines {
 		$svg.attr("width", width);
 		$svg.attr("height", height);
 		$svg.attr("viewBox", "0 0 "+width+" "+height)
+
 
 		if(xDir<0) {
 			$line.attr("x1", 0);

@@ -15,7 +15,8 @@ class ControlPanel {
 			'showAncestors',
 			'showLabelBranch',
 			'showUnfinished',
-			'editText'
+			'editText',
+			'deleteNode'
 		])
 		this.state = {
 			showingDescendants: false,
@@ -41,6 +42,7 @@ class ControlPanel {
 		this.$selectedNode.find(".btn.descendants").on("click", this.showDescendants)
 		this.$selectedNode.find(".btn.ancestors").on("click", this.showAncestors)
 		this.$selectedNode.find(".btn.labelbranch").on("click", this.showLabelBranch)
+		this.$selectedNode.find(".btn.delete").on("click", this.deleteNode)
 		this.$selectedNode.find(".text").on("keyup", this.editText)
 	}
 
@@ -105,6 +107,10 @@ class ControlPanel {
 			id: this.state.currentNode.data.id
 		})
 
+	}
+
+	deleteNode(e) {
+		this.events.trigger("node:delete", this.state.currentNode.data.id)
 	}
 
 	saveChanges() {
