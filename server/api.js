@@ -32,7 +32,7 @@ router.post('/script/update',
 	(req, res) => {
 		let db = app.get("db");
 		let data = JSON.parse(req.body.changed);
-		// console.log(data[0]._id)
+		// console.log(data)
 		update(0)
 		function update(idx) {
 			let query = {

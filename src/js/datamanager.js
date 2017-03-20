@@ -5,31 +5,45 @@ class DataManager {
 	
 	constructor(options) {
 		extend(this, options);
-		this.changed = [];
+		bindAll(this, [
+			'setNodes'
+		]);
+
+		this.changed = {};
 		this.events.on("node:update", (e) => {
-			// console.log('node change',e)
-			var matched = false;
-			this.changed.forEach((node) => {
-				if(node.id === e.id) {
-					node = e;
-					matched = true;
-				}
+			
+			if(!this.changed[e.id]) {
+				this.nodes.forEach((node) => {
+					if(e.id === node.id) this.changed[e.id] = node;
+				})
+			}
+			e.changed.forEach((change) => {
+				this.changed[e.id][change] = e.data[change];
 			})
-			if(!matched) this.changed.push(e);
+
 		})
 
 		this.events.on("savechanges", () => {
-			
+			let arr = [];
+			Object.keys(this.changed).forEach((key) => {
+				arr.push(this.changed[key]);
+			})
+			console.log(arr)
 			$.ajax({
 				type: "post",
 				url: "/api/script/update",
-				data: {changed: JSON.stringify(this.changed)}
+				data: {changed: JSON.stringify(arr)}
 			})
 			.done((e) => {
 				console.log(e)
+			 this.changed = {}
 			})
 		})
 	}	
+
+	setNodes(data) {
+		this.nodes = data;
+	}
 
 }
 

@@ -42,6 +42,7 @@ class Script {
 		return new Promise((resolve, reject) => {
 			$.get("/api/script?scriptID="+this.id, (resp) => {
 				this.content.data = JSON.parse(resp.response);
+				this.datamanager.setNodes(this.content.data);
 				resolve()
 			})
 		})
@@ -77,6 +78,7 @@ class Script {
 
 		Object.keys(this.content.nodes).forEach((key) => {
 			this.content.nodeBranchMap[key] = {};
+			if(!this.content.nodes[key].data.outgoing) this.content.nodes[key].data.outgoing = [];
 			let outgoing = this.content.nodes[key].data.outgoing;
 			outgoing.forEach((idx) => {
 				this.content.nodeBranchMap[key][idx] = {};
@@ -127,9 +129,16 @@ class Script {
 		let keys = {};
 
 		Object.keys(this.content.nodes).forEach((key) => {
+			let og = this.content.nodes[key].data.outgoing;
+			if(og.length) console.log(og.length, this.content.nodes[og[0]]);
 			if(
 				this.content.nodes[key].data.label === "ending" ||
-				this.content.nodes[key].data.outgoing.length === 4
+				og.length === 4 ||
+				(
+					og.length === 1 &&
+					this.content.nodes[og[0]].data.label === "ending"
+
+				)
 			) {
 				keys[key] = 1;
 			}

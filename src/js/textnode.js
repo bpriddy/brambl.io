@@ -26,7 +26,7 @@ class TextNode {
 			'onNodeSelect'
 		])
 		this.$el.on("mousedown", this.startDrag);
-		this.events.on("node:select", this.onNodeSelect)
+		this.events.on("node:select", this.onNodeSelect);
 	}
 
 	startDrag(e) {
@@ -43,7 +43,11 @@ class TextNode {
 		this.$appEl.unbind("mousemove", this.drag);
 		this.$appEl.unbind("mouseup", this.stopDrag);
 		this.$el.css({'zIndex': 1})
-		this.events.trigger('node:update', this.data)
+		this.events.trigger('node:update', {
+			changed: ['position'],
+			data: this.data,
+			id: this.data.id
+		})
 	}
 
 	drag(e) {

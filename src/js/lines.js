@@ -20,7 +20,6 @@ class Lines {
 		])
 		this.state = {}
 		this.create()
-		console.log(this.events)
 		this.events.on("node:move", this.onNodeMove)
 		this.events.on("node:select", this.showNodeLines)
 		this.events.on("node:show:descendants", this.highlightDescendants)

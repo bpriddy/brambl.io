@@ -31,6 +31,7 @@ class ControlPanel {
 	create() {
 		this.$parent.append(controlpanelEl());
 		this.$selectedNode = this.$parent.find(".selected-node");
+		this.$currentText = this.$selectedNode.find(".text");
 	}
 
 	bindEvents() {
@@ -91,12 +92,19 @@ class ControlPanel {
 		this.state.showingUnfinishedBranches = !this.state.showingUnfinishedBranches;
 		this.events.trigger("node:show:unfinished", {
 			show: this.state.showingUnfinishedBranches
-		})
+		});
 	}
 
 
 	editText(e) {
-		console.log(e)
+		console.log(this.$currentText.html());
+		
+		this.events.trigger('node:update', {
+			changed: ['text'],
+			data: {text: this.$currentText.html() },
+			id: this.state.currentNode.data.id
+		})
+
 	}
 
 	saveChanges() {
