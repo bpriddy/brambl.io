@@ -9,31 +9,64 @@ var router = express.Router();
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-var script = require("./db/script_4_1.js");
+var script = require("./db/script_simplified_1.js");
+
+var scriptData = {
+	scriptID: 5,
+	videoURL: 'parallel_arguments.mp4'
+}
 
 router.get('/script/', 
 	(req, res) => {
-		let db = app.get("db");
+		// console.log(req.query.scriptID)
 		// db.collection('nodes').insert(script.script)
-		db.collection('nodes').find().toArray(function (err, result) {
-			if (err) throw err
-			let obj = {
-				response: JSON.stringify(result)
-			}
-			
-			res.send(obj); 
-
-		})
+		// db.collection('scripts').insert(scriptData)
+		getScript(parseInt(req.query.scriptID))
+			.then(getNodes)
+			.then((retObj) => {
+				let obj = {
+					response: JSON.stringify(retObj)
+				}
+				res.send(obj);
+			})
+		
 		
 	}
 )
+
+function getScript(sid) {
+	return new Promise((resolve, reject) => {
+		let db = app.get("db");
+		db.collection('scripts').find({scriptID: sid }).toArray(function (err, result) {
+			if (err) reject(err);
+			resolve(result[0]); 
+		})
+	});
+}
+
+function getNodes(sObj) {
+	return new Promise((resolve, reject) => {
+		let db = app.get("db");
+		db.collection('nodes').find({scriptID: parseInt(sObj.scriptID) }).toArray(function (err, result) {
+			if (err) reject(err);
+			let obj = {
+				response: JSON.stringify(result)
+			}
+			resolve({
+				nodes: obj,
+				script: sObj
+			}); 
+
+		})
+	})
+}
 
 router.post('/script/update',
 	(req, res) => {
 		let db = app.get("db");
 		let data = JSON.parse(req.body.changed);
 		// console.log(data)
-		update(0)
+		if(data.length) update(0);
 		function update(idx) {
 			let query = {
 				id: data[idx].id
@@ -47,20 +80,22 @@ router.post('/script/update',
 					idx++;
 					update(idx);
 				} else {
+					
 					res.send("success");
+
 				}
 			});
 
 		}
 
-		let toDelete = JSON.parse(req.body.deleted);
-		if(toDelete.length) remove(0);
+		let toDelete = (req.body.deleted) ? JSON.parse(req.body.deleted) : undefined;
+		if(toDelete) remove(0);
 		function remove(idx) {
 			let query = {
 				id: toDelete[idx]
 			}
 			toDelete.shift();
-			console.log(query);
+			// console.log("remove", query);
 			// db.collection('nodes').remove(query, (err, result) => {
 			// 	if (err) throw err;
 				
@@ -72,7 +107,6 @@ router.post('/script/update',
 			// 	}
 			// });
 		}
-
 
 	}
 

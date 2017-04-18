@@ -1,5 +1,5 @@
 const fs = require("fs");
-const script = require("./script_4_1_map.js");
+const script = require("./script_simplified_1_map.js");
 
 let map = script.map
 
@@ -74,7 +74,7 @@ Object.keys(branches).forEach((name) => {
 
 console.log(shootScript)
 
-fs.writeFile('shooScript_4_1.txt', shootScript, 'utf8', () => {
+fs.writeFile('shooScript_simplified_1.txt', shootScript, 'utf8', () => {
 	console.log('SUCCESS');
 });
 

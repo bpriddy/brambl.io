@@ -1,0 +1,1226 @@
+==============================
+NICK
+==============================
+
+
+0.
+
+incoming: 
+
+claire: what did you say gary?
+dan: <b>I can't believe you said that man</b>
+dan: Claire, he basically took a crap on your chances of getting that job!
+gary: That's not what I said!
+claire: I gather you got the call today. &nbsp;Let me assure you: If you got creative with your answers, I will kill you in your sleep
+claire: LOOP: sinister smile at Gary
+dan: LOOP: stare and Gary
+dan: Well then what did you say?
+claire: oh no, gary. what did you say?
+
+lines: 
+
+He didn't do anything wrong, Claire. &nbsp;Dan is just trying to get you angry at Gary
+
+He's jealous because you used Gary as a reference instead of him
+
+(To Claire) He got you that job because he wants to get closer to you. But you don't see it, because you're so self obsessed.
+
+And Gary, Claire doesn't actually value your input, she just makes fun of you behind your back
+
+LOOP: folded arms. &nbsp;pleased with himself
+
+--------------------------
+1.
+
+incoming: 
+
+claire: oh gary.. please say you didn't tell them about your bachelor party...
+claire: PLEASE SAY YOU DIDN't TELL THEM ABOUT THAT
+dan: WHAT DID YOU DO TO CLAIRE AT YOUR BACHELOR PARTY???
+claire: LOOP: nervous look at Gary
+
+lines: 
+
+wait what? oh man, I can't wait to hear this
+
+LOOP: excited look at Claire
+
+--------------------------
+2.
+
+incoming: 
+
+dan: YES YOU DID!
+gary: NO I DIDN'T!
+
+lines: 
+
+LOOP: hahahahahah
+
+--------------------------
+3.
+
+incoming: 
+
+gary: In my opinion, Everything went very well. &nbsp;I am a good friend to Claire.
+
+lines: 
+
+Uh oh, &nbsp;positive affirmations, Gary?
+
+doesn't a life coach need to first be successful in their own life?
+
+LOOP: wry smile at Gary
+
+--------------------------
+4.
+
+incoming: 
+
+gary: I said she was a great and loyal friend
+dan: How does telling her interviewer that she went to jail for drugs make you a good friend?
+dan: LOOP: stare at Gary
+dan: How does Claire getting busted for drugs make her a good friend?
+gary: because she was covering for me
+gary: I told them you were a smart, loyal person who anybody would benefit from having on their team!
+
+lines: 
+
+well... that's not exactly what he said...
+
+Gary tried to use his life coaching mind tricks on the interviewer
+
+and Dan is jealous because you chose Gary for your reference instead of him
+
+and Claire feels sorry for you Gary, that's the only reason she listens.
+
+She actually makes fun of your life coaching dalliance quite a bit, behind your back
+
+LOOP: assured look at Gary
+
+--------------------------
+5.
+
+incoming: 
+
+dan: LOOP: head in hands
+dan: you ruined everything, Gary
+dan: he told them about when you got locked up for drugs
+gary: Careful Dan. &nbsp;Not sure you're ready for everyone to know what i could have ruined
+
+lines: 
+
+Uh oh. &nbsp;something deeper is going on here
+
+LOOP: nervous
+
+--------------------------
+6.
+
+incoming: 
+
+dan: (to Gary) wow, buddy. You are literally the most delusional person I know
+dan: (to Gary) you are the slimiest
+
+lines: 
+
+(to dan) And you are the most jealous. &nbsp;Gary is ridiculous, but you're mostly just angry because Claire didn't pick you
+
+(To Claire) He got you that job because he wants to get closer to you. But you don't see it, because you're so self obsessed.
+
+And Gary, Claire doesn't actually value your input, she just makes fun of you behind your back
+
+LOOP: folded arms. &nbsp;pleased with himself
+
+--------------------------
+7.
+
+incoming: 
+
+dan: Claire felt sorry for you man. &nbsp;That's the only reason she agreed to do those 'workshops' with you
+dan: LOOP: (sorry bro look at Gary)
+
+lines: 
+
+LOOP: nodding
+
+--------------------------
+8.
+
+incoming: 
+
+dan: It is kind of messed up how you talk behind his back, Claire
+dan: LOOP: looking at Claire
+
+lines: 
+
+LOOP: nodding at Dan
+
+--------------------------
+9.
+
+incoming: 
+
+claire: NICK!! What is going on with you today?
+claire: Why are you being such a piece of shit right now??
+gary: Nick what is your problem right now?
+dan: You're being a huge asshole right now Nick
+claire: LOOP: at Nick
+gary: LOOP: at Nick
+dan: LOOP: at Nick
+
+lines: 
+
+I'm just calling it like I see it. &nbsp;I don't think you guys should be allowed to act as carelessly anymore as you did when your fuckup caused the last straw between Lisa and I. &nbsp;All 3 of you deserve to be miserable
+
+ending: Nick is much more evil than any of us may have previously realized. &nbsp;Let's watch again
+
+--------------------------
+10.
+
+incoming: 
+
+gary: (to Claire) I told them you sacrificed your spotless record so that I could make it to see my grandmother before she passed
+gary: LOOP: waiting for Claire to respond
+
+lines: 
+
+deadpan
+
+ending: Awww. &nbsp;that was so sweet. &nbsp;Let's go again
+
+--------------------------
+11.
+
+incoming: 
+
+claire: I may... have crashed his bachelor party... and had a dance off with the stripper
+gary: LOOP: hahaha
+claire: LOOP: embarrassed
+gary: Relax, Dan. &nbsp;I didn't do anything to Claire.. &nbsp;I just never realized how good of a dancer she was (lol)
+
+lines: 
+
+LOOP: hahahahahaha
+
+--------------------------
+12.
+
+incoming: 
+
+gary: Well Nick. &nbsp;that was Diarrhea
+claire: Dan, this is a safe space. &nbsp;You can tell us about anything. like girl trouble... or horrible digestive problems
+gary: LOOP: chuckle
+claire: LOOP::&nbsp;shudder&nbsp;
+
+lines: 
+
+WHAT??! &nbsp;THAT WAS DIARRHEA??? &nbsp;I THOUGHT IT WAS HAIR DYE
+
+...oh my god.. why I was cleaning it up some got in my mouth
+
+ending: Well that's just terrifying. &nbsp;If you need a break. I understand
+
+--------------------------
+13.
+
+incoming: 
+
+claire: oh no Gary, not the shower mess
+gary: LOOP: making cut neck sign to say stop it
+dan: hahahah,&nbsp;what are you talking about???
+dan: LOOP: quizzical at Claire
+gary: LOOP: chuckle
+
+lines: 
+
+Yeah, &nbsp;that stuff was everywhere. What the heck happened?
+
+--------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================
+DAN
+==============================
+
+
+0.
+
+incoming: 
+
+
+
+lines: 
+
+<b>I can't believe you said that man</b>
+
+Claire, he basically took a crap on your chances of getting that job!
+
+you ruined everything, Gary
+
+LOOP: head in hands
+
+--------------------------
+1.
+
+incoming: 
+
+claire: oh no Gary, not the shower mess
+gary: LOOP: making cut neck sign to say stop it
+
+lines: 
+
+hahahah,&nbsp;what are you talking about???
+
+LOOP: quizzical at Claire
+
+--------------------------
+2.
+
+incoming: 
+
+nick: He didn't do anything wrong, Claire. &nbsp;Dan is just trying to get you angry at Gary
+nick: (to dan) And you are the most jealous. &nbsp;Gary is ridiculous, but you're mostly just angry because Claire didn't pick you
+nick: and Dan is jealous because you chose Gary for your reference instead of him
+claire: Wait.. what are you talking about?
+gary: He's not lyin
+claire: LOOP: confused
+
+lines: 
+
+WHAT ARE YOU TALKING ABOUT?? &nbsp;I'M TRYING TO DEFEND HER
+
+This is about what Gary did, not me
+
+LOOP: at Nick
+
+--------------------------
+3.
+
+incoming: 
+
+claire: oh gary.. please say you didn't tell them about your bachelor party...
+claire: PLEASE SAY YOU DIDN't TELL THEM ABOUT THAT
+gary: hahaha, ohh man. &nbsp;No I didn't tell them about that
+claire: LOOP: nervous look at Gary
+
+lines: 
+
+what happened at your bachelor party, Gary?
+
+WHAT DID YOU DO TO CLAIRE AT YOUR BACHELOR PARTY???
+
+LOOP: enraged look towards Gary
+
+--------------------------
+4.
+
+incoming: 
+
+gary: NO I DIDN'T!
+nick: LOOP: hahahahahah
+
+lines: 
+
+YES YOU DID!
+
+you ruined everything, Gary
+
+LOOP: head in hands
+
+--------------------------
+5.
+
+incoming: 
+
+claire: WHAT DID YOU SAY?!?
+gary: I SAID ONLY GOOD THINGS!
+gary: I told them you were a smart, loyal person who anybody would benefit from having on their team!
+claire: oh no, gary. what did you say?
+
+lines: 
+
+he told them about when you got locked up for drugs
+
+LOOP: intense stare at Gary
+
+--------------------------
+6.
+
+incoming: 
+
+gary: That's not what I said!
+
+lines: 
+
+Well then what did you say?
+
+LOOP: stare and Gary
+
+--------------------------
+7.
+
+incoming: 
+
+gary: I said she was a great and loyal friend
+
+lines: 
+
+How does Claire getting busted for drugs make her a good friend?
+
+LOOP: stare at Gary
+
+--------------------------
+8.
+
+incoming: 
+
+gary: because she was covering for me
+
+lines: 
+
+...I'm going to murder you.
+
+LOOP: head in hands
+
+--------------------------
+9.
+
+incoming: 
+
+gary: (to Claire) I told them you sacrificed your spotless record so that I could make it to see my grandmother before she passed
+gary: LOOP: waiting for Claire to respond
+
+lines: 
+
+I didn't know any of this. &nbsp;Gary I'm sorry, man
+
+ending: Awww. &nbsp;that was so sweet. &nbsp;Let's go again
+
+--------------------------
+10.
+
+incoming: 
+
+gary: In my opinion, Everything went very well. &nbsp;I am a good friend to Claire.
+nick: Uh oh, &nbsp;positive affirmations, Gary?
+
+lines: 
+
+How does telling her interviewer that she went to jail for drugs make you a good friend?
+
+LOOP: stare at Gary
+
+--------------------------
+11.
+
+incoming: 
+
+gary: I think she's really grown since we've been doing sessions on changing her energy towards her work
+gary: LOOP: self assured
+
+lines: 
+
+(to Gary) wow, buddy. You are literally the most delusional person I know
+
+Claire felt sorry for you man. &nbsp;That's the only reason she agreed to do those 'workshops' with you
+
+LOOP: (sorry bro look at Gary)
+
+--------------------------
+12.
+
+incoming: 
+
+nick: LOOP: wry smile at Gary
+gary: Thank you, guys. &nbsp;I had the same thought, at one point, but after some effective visualization, I was able to see how my energy truly helps people
+nick: doesn't a life coach need to first be successful in their own life?
+
+lines: 
+
+(to Gary) you are the slimiest
+
+LOOP: (sorry bro look at Gary)
+
+--------------------------
+13.
+
+incoming: 
+
+nick: She actually makes fun of your life coaching dalliance quite a bit, behind your back
+nick: LOOP: assured look at Gary
+
+lines: 
+
+It is kind of messed up how you talk behind his back, Claire
+
+LOOP: looking at Claire
+
+--------------------------
+14.
+
+incoming: 
+
+claire: LOOP: stare at Gary
+claire: GARY!! &nbsp;YOU BETTER NOT HAVE MESSED THIS UP FOR ME
+gary: I left out the part about the drugs!! &nbsp;
+gary: Because that wasn't the point of the story!
+
+lines: 
+
+LOOP: angry heavy breathing stare at Gary
+
+--------------------------
+15.
+
+incoming: 
+
+claire: Dan, what are they talking about?
+gary: LOOP: nervous
+nick: LOOP: nervous
+claire: LOOP: quizzical towards Dan
+
+lines: 
+
+(Dan runs away)
+
+ending: Whoops... Dan wasn't ready for that one. &nbsp;Let's see how he does in other timelines
+
+--------------------------
+16.
+
+incoming: 
+
+gary: Careful Dan. &nbsp;Not sure you're ready for everyone to know what i could have ruined
+nick: Uh oh. &nbsp;something deeper is going on here
+
+lines: 
+
+LOOP: Dan darts his eyes from side to side
+
+--------------------------
+17.
+
+incoming: 
+
+gary: Relax, Dan. &nbsp;I didn't do anything to Claire.. &nbsp;I just never realized how good of a dancer she was (lol)
+claire: I may... have crashed his bachelor party... and had a dance off with the stripper
+nick: LOOP: hahahahahaha
+gary: LOOP: hahaha
+
+lines: 
+
+Dan lunges at Gary to kill him
+
+ending: Whoa... what? &nbsp;Rewind
+
+--------------------------
+18.
+
+incoming: 
+
+claire: Gary didn't do anything to me, Dan
+
+lines: 
+
+LOOP: enraged look at Dan
+
+--------------------------
+19.
+
+incoming: 
+
+nick: Yeah, &nbsp;that stuff was everywhere. What the heck happened?
+claire: Dan, this is a safe space. &nbsp;You can tell us about anything. like girl trouble... or horrible digestive problems
+gary: Well Nick. &nbsp;that was Diarrhea
+gary: LOOP: chuckle
+claire: LOOP::&nbsp;shudder&nbsp;
+nick: WHAT??! &nbsp;THAT WAS DIARRHEA??? &nbsp;I THOUGHT IT WAS HAIR DYE
+claire: LOOP: shudder
+gary: LOOP: BWAHAHAHAH
+
+lines: 
+
+(quietly).... (head in hands) Ok... I had diarrhea in the shower
+
+ending: Well that's just terrifying. &nbsp;If you need a break. I understand
+
+--------------------------
+20.
+
+incoming: 
+
+nick: He's jealous because you used Gary as a reference instead of him
+
+lines: 
+
+THAT'S NOT TRUE!!
+
+This is about what Gary did, not me
+
+LOOP: at Nick
+
+--------------------------
+21.
+
+incoming: 
+
+nick: (To Claire) He got you that job because he wants to get closer to you. But you don't see it, because you're so self obsessed.
+claire: FUCK YOU NICK!
+
+lines: 
+
+FUCK YOU NICK!
+
+LOOP: at Nick
+
+--------------------------
+22.
+
+incoming: 
+
+nick: And Gary, Claire doesn't actually value your input, she just makes fun of you behind your back
+nick: LOOP: folded arms. &nbsp;pleased with himself
+
+lines: 
+
+You're being a huge asshole right now Nick
+
+LOOP: at Nick
+
+--------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================
+GARY
+==============================
+
+
+0.
+
+incoming: 
+
+claire: what did you say gary?
+dan: <b>I can't believe you said that man</b>
+
+lines: 
+
+That's not what I said!
+
+In my opinion, Everything went very well. &nbsp;I am a good friend to Claire.
+
+I think she's really grown since we've been doing sessions on changing her energy towards her work
+
+LOOP: self assured
+
+--------------------------
+1.
+
+incoming: 
+
+claire: oh no, gary. what did you say?
+claire: I gather you got the call today. &nbsp;Let me assure you: If you got creative with your answers, I will kill you in your sleep
+claire: LOOP: sinister smile at Gary
+
+lines: 
+
+I SAID ONLY GOOD THINGS!
+
+I told them you were a smart, loyal person who anybody would benefit from having on their team!
+
+(to Claire) I told them you sacrificed your spotless record so that I could make it to see my grandmother before she passed
+
+LOOP: waiting for Claire to respond
+
+--------------------------
+2.
+
+incoming: 
+
+claire: oh gary.. please say you didn't tell them about your bachelor party...
+claire: PLEASE SAY YOU DIDN't TELL THEM ABOUT THAT
+nick: wait what? oh man, I can't wait to hear this
+claire: LOOP: nervous look at Gary
+
+lines: 
+
+hahaha, ohh man. &nbsp;No I didn't tell them about that
+
+But you should now!
+
+LOOP: anticipation to Claire
+
+--------------------------
+3.
+
+incoming: 
+
+dan: Claire, he basically took a crap on your chances of getting that job!
+dan: YES YOU DID!
+nick: LOOP: hahahahahah
+
+lines: 
+
+NO I DIDN'T!
+
+In my opinion, Everything went very well. &nbsp;I am a good friend to Claire.
+
+I think she's really grown since we've been doing sessions on changing her energy towards her work
+
+LOOP: self assured
+
+--------------------------
+4.
+
+incoming: 
+
+dan: (to Gary) wow, buddy. You are literally the most delusional person I know
+nick: LOOP: wry smile at Gary
+nick: doesn't a life coach need to first be successful in their own life?
+nick: and Claire feels sorry for you Gary, that's the only reason she listens.
+
+lines: 
+
+Thank you, guys. &nbsp;I had the same thought, at one point, but after some effective visualization, I was able to see how my energy truly helps people
+
+I am the catalyst for positive change in this world
+
+ending: BARF! &nbsp;Let's try that again
+
+--------------------------
+5.
+
+incoming: 
+
+dan: Well then what did you say?
+dan: LOOP: stare and Gary
+
+lines: 
+
+I said she was a great and loyal friend
+
+I think she's really grown since we've been doing sessions on changing her energy towards her work
+
+LOOP: self assured
+
+--------------------------
+6.
+
+incoming: 
+
+dan: How does Claire getting busted for drugs make her a good friend?
+
+lines: 
+
+because she was covering for me
+
+(to Claire) I told them you sacrificed your spotless record so that I could make it to see my grandmother before she passed
+
+LOOP: waiting for Claire to respond
+
+--------------------------
+7.
+
+incoming: 
+
+claire: YOU TOLD THEM ABOUT THE DRUGS!?!
+claire: LOOP: intense stare at Gary
+dan: LOOP: intense stare at Gary
+dan: he told them about when you got locked up for drugs
+
+lines: 
+
+I left out the part about the drugs!! &nbsp;
+
+(to Claire) I told them you sacrificed your spotless record so that I could make it to see my grandmother before she passed
+
+LOOP: waiting for Claire to respond
+
+--------------------------
+8.
+
+incoming: 
+
+dan: How does telling her interviewer that she went to jail for drugs make you a good friend?
+dan: LOOP: stare at Gary
+
+lines: 
+
+Because that wasn't the point of the story!
+
+(to Claire) I told them you sacrificed your spotless record so that I could make it to see my grandmother before she passed
+
+LOOP: waiting for Claire to respond
+
+--------------------------
+9.
+
+incoming: 
+
+nick: Gary tried to use his life coaching mind tricks on the interviewer
+nick: and Dan is jealous because you chose Gary for your reference instead of him
+nick: and Claire feels sorry for you Gary, that's the only reason she listens.
+nick: She actually makes fun of your life coaching dalliance quite a bit, behind your back
+nick: LOOP: assured look at Gary
+dan: It is kind of messed up how you talk behind his back, Claire
+dan: LOOP: looking at Claire
+nick: LOOP: nodding at Dan
+claire: NICK!! What is going on with you today?
+dan: LOOP: angry heavy breathing stare at Gary
+
+lines: 
+
+You know what. &nbsp;I'm tired of this crap. &nbsp;I did a good thing, and you all have your head too far up your asses to see
+
+ending: Bummer... friends can't last if they can't listen
+
+--------------------------
+10.
+
+incoming: 
+
+dan: you ruined everything, Gary
+dan: LOOP: head in hands
+
+lines: 
+
+Careful Dan. &nbsp;Not sure you're ready for everyone to know what i could have ruined
+
+LOOP: nervous
+
+--------------------------
+11.
+
+incoming: 
+
+dan: WHAT DID YOU DO TO CLAIRE AT YOUR BACHELOR PARTY???
+dan: LOOP: enraged look towards Gary
+dan: what happened at your bachelor party, Gary?
+claire: Gary didn't do anything to me, Dan
+nick: LOOP: excited look at Claire
+dan: LOOP: enraged look at Dan
+
+lines: 
+
+Relax, Dan. &nbsp;I didn't do anything to Claire.. &nbsp;I just never realized how good of a dancer she was (lol)
+
+LOOP: hahaha
+
+--------------------------
+12.
+
+incoming: 
+
+claire: oh no Gary, not the shower mess
+
+lines: 
+
+LOOP: making cut neck sign to say stop it
+
+--------------------------
+13.
+
+incoming: 
+
+nick: Yeah, &nbsp;that stuff was everywhere. What the heck happened?
+
+lines: 
+
+Well Nick. &nbsp;that was Diarrhea
+
+LOOP: chuckle
+
+--------------------------
+14.
+
+incoming: 
+
+nick: WHAT??! &nbsp;THAT WAS DIARRHEA??? &nbsp;I THOUGHT IT WAS HAIR DYE
+claire: LOOP: shudder
+
+lines: 
+
+LOOP: BWAHAHAHAH
+
+--------------------------
+15.
+
+incoming: 
+
+dan: LOOP: quizzical at Claire
+dan: hahahah,&nbsp;what are you talking about???
+
+lines: 
+
+LOOP: chuckle
+
+--------------------------
+16.
+
+incoming: 
+
+nick: He didn't do anything wrong, Claire. &nbsp;Dan is just trying to get you angry at Gary
+claire: Wait.. what are you talking about?
+claire: LOOP: confused
+nick: (to dan) And you are the most jealous. &nbsp;Gary is ridiculous, but you're mostly just angry because Claire didn't pick you
+
+lines: 
+
+He's not lyin
+
+but Nick; You are acting a bit weird, bud. Why don't you cool it for a minute
+
+It starting to seem like you want us all to fight
+
+LOOP: at Nick
+
+--------------------------
+17.
+
+incoming: 
+
+nick: LOOP: folded arms. &nbsp;pleased with himself
+nick: And Gary, Claire doesn't actually value your input, she just makes fun of you behind your back
+
+lines: 
+
+Nick what is your problem right now?
+
+LOOP: at Nick
+
+--------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================
+CLAIRE
+==============================
+
+
+0.
+
+incoming: 
+
+dan: <b>I can't believe you said that man</b>
+
+lines: 
+
+what did you say gary?
+
+oh no Gary, not the shower mess
+
+Dan, this is a safe space. &nbsp;You can tell us about anything. like girl trouble... or horrible digestive problems
+
+LOOP::&nbsp;shudder&nbsp;
+
+--------------------------
+1.
+
+incoming: 
+
+dan: Claire, he basically took a crap on your chances of getting that job!
+gary: In my opinion, Everything went very well. &nbsp;I am a good friend to Claire.
+nick: Uh oh, &nbsp;positive affirmations, Gary?
+gary: That's not what I said!
+dan: Well then what did you say?
+dan: LOOP: stare and Gary
+
+lines: 
+
+oh no, gary. what did you say?
+
+oh gary.. please say you didn't tell them about your bachelor party...
+
+PLEASE SAY YOU DIDN't TELL THEM ABOUT THAT
+
+LOOP: nervous look at Gary
+
+--------------------------
+2.
+
+incoming: 
+
+dan: you ruined everything, Gary
+dan: YES YOU DID!
+gary: NO I DIDN'T!
+nick: LOOP: hahahahahah
+gary: I SAID ONLY GOOD THINGS!
+dan: LOOP: head in hands
+
+lines: 
+
+WHAT DID YOU SAY?!?
+
+oh gary.. please say you didn't tell them about your bachelor party...
+
+PLEASE SAY YOU DIDN't TELL THEM ABOUT THAT
+
+LOOP: nervous look at Gary
+
+--------------------------
+3.
+
+incoming: 
+
+dan: How does Claire getting busted for drugs make her a good friend?
+dan: How does telling her interviewer that she went to jail for drugs make you a good friend?
+gary: because she was covering for me
+dan: LOOP: stare at Gary
+dan: ...I'm going to murder you.
+dan: LOOP: head in hands
+dan: he told them about when you got locked up for drugs
+gary: Because that wasn't the point of the story!
+
+lines: 
+
+YOU TOLD THEM ABOUT THE DRUGS!?!
+
+LOOP: intense stare at Gary
+
+--------------------------
+4.
+
+incoming: 
+
+gary: I think she's really grown since we've been doing sessions on changing her energy towards her work
+gary: LOOP: self assured
+dan: (to Gary) wow, buddy. You are literally the most delusional person I know
+nick: LOOP: wry smile at Gary
+gary: Thank you, guys. &nbsp;I had the same thought, at one point, but after some effective visualization, I was able to see how my energy truly helps people
+nick: doesn't a life coach need to first be successful in their own life?
+dan: (to Gary) you are the slimiest
+
+lines: 
+
+Ohhh Gary... That's just fine
+
+I gather you got the call today. &nbsp;Let me assure you: If you got creative with your answers, I will kill you in your sleep
+
+LOOP: sinister smile at Gary
+
+--------------------------
+5.
+
+incoming: 
+
+nick: Gary tried to use his life coaching mind tricks on the interviewer
+gary: I left out the part about the drugs!! &nbsp;
+gary: I told them you were a smart, loyal person who anybody would benefit from having on their team!
+
+lines: 
+
+GARY!! &nbsp;YOU BETTER NOT HAVE MESSED THIS UP FOR ME
+
+LOOP: stare at Gary
+
+--------------------------
+6.
+
+incoming: 
+
+nick: She actually makes fun of your life coaching dalliance quite a bit, behind your back
+nick: and Dan is jealous because you chose Gary for your reference instead of him
+nick: LOOP: assured look at Gary
+dan: It is kind of messed up how you talk behind his back, Claire
+dan: LOOP: looking at Claire
+nick: LOOP: nodding at Dan
+
+lines: 
+
+NICK!! What is going on with you today?
+
+--------------------------
+7.
+
+incoming: 
+
+gary: (to Claire) I told them you sacrificed your spotless record so that I could make it to see my grandmother before she passed
+gary: LOOP: waiting for Claire to respond
+
+lines: 
+
+Oh.. umm... thanks Gary.
+
+ending: Awww. &nbsp;that was so sweet. &nbsp;Let's go again
+
+--------------------------
+8.
+
+incoming: 
+
+gary: Careful Dan. &nbsp;Not sure you're ready for everyone to know what i could have ruined
+nick: Uh oh. &nbsp;something deeper is going on here
+dan: LOOP: Dan darts his eyes from side to side
+
+lines: 
+
+Dan, what are they talking about?
+
+LOOP: quizzical towards Dan
+
+--------------------------
+9.
+
+incoming: 
+
+dan: LOOP: enraged look towards Gary
+dan: WHAT DID YOU DO TO CLAIRE AT YOUR BACHELOR PARTY???
+nick: LOOP: excited look at Claire
+nick: wait what? oh man, I can't wait to hear this
+
+lines: 
+
+Gary didn't do anything to me, Dan
+
+I may... have crashed his bachelor party... and had a dance off with the stripper
+
+LOOP: embarrassed
+
+--------------------------
+10.
+
+incoming: 
+
+nick: WHAT??! &nbsp;THAT WAS DIARRHEA??? &nbsp;I THOUGHT IT WAS HAIR DYE
+gary: LOOP: BWAHAHAHAH
+
+lines: 
+
+LOOP: shudder
+
+--------------------------
+11.
+
+incoming: 
+
+nick: He didn't do anything wrong, Claire. &nbsp;Dan is just trying to get you angry at Gary
+
+lines: 
+
+Wait.. what are you talking about?
+
+LOOP: confused
+
+--------------------------
+12.
+
+incoming: 
+
+nick: (to dan) And you are the most jealous. &nbsp;Gary is ridiculous, but you're mostly just angry because Claire didn't pick you
+gary: He's not lyin
+dan: WHAT ARE YOU TALKING ABOUT?? &nbsp;I'M TRYING TO DEFEND HER
+nick: He's jealous because you used Gary as a reference instead of him
+
+lines: 
+
+Dan.. He's joking right?
+
+LOOP: more confused
+
+--------------------------
+13.
+
+incoming: 
+
+nick: (To Claire) He got you that job because he wants to get closer to you. But you don't see it, because you're so self obsessed.
+dan: FUCK YOU NICK!
+
+lines: 
+
+FUCK YOU NICK!
+
+LOOP: at Nick
+
+--------------------------
+14.
+
+incoming: 
+
+nick: LOOP: folded arms. &nbsp;pleased with himself
+nick: And Gary, Claire doesn't actually value your input, she just makes fun of you behind your back
+
+lines: 
+
+Why are you being such a piece of shit right now??
+
+LOOP: at Nick
+
+--------------------------
+15.
+
+incoming: 
+
+dan: This is about what Gary did, not me
+dan: LOOP: at Nick
+gary: but Nick; You are acting a bit weird, bud. Why don't you cool it for a minute
+
+lines: 
+
+LOOP: still confused
+
+--------------------------

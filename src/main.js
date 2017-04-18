@@ -15,7 +15,7 @@ $(() => {
 	datamanager = new DataManager({
 		events: events
 	})
-	loadScript(4.1);
+	loadScript(5); //simplified = 5
 
 	function loadScript(scriptID) {
 		script = new Script({

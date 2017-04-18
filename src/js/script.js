@@ -5,6 +5,7 @@ import TextNode from './textnode.js';
 import Lines from './lines.js';
 import ZoomAndPan from './zoomandpan.js';
 import ControlPanel from './controlpanel.js';
+import VideoPlayer from './videoplayer.js';
 
 import scriptEl from '../pug/script.pug';
 
@@ -46,16 +47,22 @@ class Script {
 		return new Promise((resolve, reject) => {
 			$.get("/api/script?scriptID="+this.id, (resp) => {
 				this.content.data = JSON.parse(resp.response);
-				this.datamanager.setNodes(this.content.data);
+				this.content.data.nodes = JSON.parse(this.content.data.nodes.response);
+				console.log(this.content.data)
+				this.datamanager.setNodes(this.content.data.nodes);
 				resolve()
 			})
 		})
 	}
 
 	create() {
-
 		$scriptContainer = $(scriptEl());
 		this.$parent.append($scriptContainer)
+		this.videoplayer = new VideoPlayer({
+			$parent: $scriptContainer.find(".video-player"),
+			videoURL: this.content.data.script.videoURL,
+			events: this.events
+		});
 
 		zoomandpan = new ZoomAndPan({
 			parent: $scriptContainer.find(".stage")[0], 
@@ -69,8 +76,7 @@ class Script {
 			events: this.events
 		})
 
-
-		this.content.data.forEach((node) => {
+		this.content.data.nodes.forEach((node) => {
 			this.content.nodes[node.id] = new TextNode({
 				data: node,
 				zoomandpan: zoomandpan,

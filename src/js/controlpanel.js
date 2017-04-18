@@ -13,9 +13,11 @@ class ControlPanel {
 			'showSelectedNode',
 			'showDescendants',
 			'showAncestors',
+			'showVideo',
 			'showLabelBranch',
 			'showUnfinished',
 			'editText',
+			'editTimestamp',
 			'deleteNode'
 		])
 		this.state = {
@@ -33,17 +35,26 @@ class ControlPanel {
 		this.$parent.append(controlpanelEl());
 		this.$selectedNode = this.$parent.find(".selected-node");
 		this.$currentText = this.$selectedNode.find(".text");
+		this.$currentTimestamp = this.$selectedNode.find(".timestamp");
 	}
 
 	bindEvents() {
 		this.$parent.find(".save.btn").on("click", this.saveChanges)
 		this.$parent.find(".btn.showunfinished").on("click", this.showUnfinished)
 		this.events.on("node:select", this.showSelectedNode)
+		this.$selectedNode.find(".btn.video").on("click", this.showVideo)
 		this.$selectedNode.find(".btn.descendants").on("click", this.showDescendants)
 		this.$selectedNode.find(".btn.ancestors").on("click", this.showAncestors)
 		this.$selectedNode.find(".btn.labelbranch").on("click", this.showLabelBranch)
 		this.$selectedNode.find(".btn.delete").on("click", this.deleteNode)
 		this.$selectedNode.find(".text").on("keyup", this.editText)
+		this.$selectedNode.find(".timestamp").on("keyup", this.editTimestamp)
+	}
+
+	showVideo() {
+		this.events.trigger("videoplayer:show",{
+			timestamp: this.state.currentNode.timestamp
+		})
 	}
 
 	showLabelBranch(e) {
@@ -99,11 +110,22 @@ class ControlPanel {
 
 
 	editText(e) {
-		console.log(this.$currentText.html());
+		// console.log(this.$currentText.html());
 		
 		this.events.trigger('node:update', {
 			changed: ['text'],
 			data: {text: this.$currentText.html() },
+			id: this.state.currentNode.data.id
+		})
+
+	}
+
+	editTimestamp(e) {
+		// console.log(this.$currentTimestamp);
+		
+		this.events.trigger('node:update', {
+			changed: ['timestamp'],
+			data: {timestamp: this.$currentTimestamp.html() },
 			id: this.state.currentNode.data.id
 		})
 
@@ -125,6 +147,8 @@ class ControlPanel {
 		if(node.data.id > -1) {
 			this.state.currentNode = node;
 			this.$selectedNode.find(".text").html(node.data.text)
+			let timestamp = (node.data.timestamp) ? node.data.timestamp : 0;
+			this.$selectedNode.find(".timestamp").html(timestamp)
 			this.$selectedNode.addClass("selected")
 		} else {
 			this.currentNode = null;

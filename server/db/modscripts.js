@@ -1,12 +1,16 @@
 var fs = require("fs");
 
-var script = require("./script_1.js");
+var script = require("./script_simplified_1.js");
+// script = script.script;
 var colorLabelDict = [
 
 	{color: 'rgb(169, 169, 169)',
 	label: 'ending'},
 
 	{color: 'rgb(132, 128, 0)',
+	label: 'dan'},
+
+	{color: 'rgb(255, 248, 66)',
 	label: 'dan'},
 
 	{color: 'rgb(0, 132, 44)',
@@ -48,6 +52,10 @@ var colorLabelDict = [
 	{color: 'rgb(66, 223, 255)',
 	label: 'claire'},
 
+
+	{color: 'rgb(0, 212, 255)',
+	label: 'claire'},
+
 	{color: 'rgb(255, 255, 255)',
 	label: 'dan'},
 
@@ -70,7 +78,7 @@ script.forEach((node) => {
 			node.label = entry.label
 			matched = true;
 		 	delete node.color;
-		 	node.scriptID = 1;
+		 	node.scriptID = 5;
 		}
 	})
 
@@ -78,7 +86,7 @@ script.forEach((node) => {
 
 // console.log(script)
 
-fs.writeFile('script_1.json', "module.exports = "+JSON.stringify({script: script}), 'utf8', () => {
+fs.writeFile('simplified_1.json', "module.exports = "+JSON.stringify({script: script}), 'utf8', () => {
 	console.log('SUCCESS');
 });
 

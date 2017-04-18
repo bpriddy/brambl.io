@@ -27,10 +27,12 @@ class DataManager {
 		e.changed.forEach((change) => {
 			this.changed[e.id][change] = e.data[change];
 		})
+
 	}
 
 	saveChanges() {
 		let arr = [];
+		console.log(this.changed)
 		Object.keys(this.changed).forEach((key) => {
 			arr.push(this.changed[key]);
 		})

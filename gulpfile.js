@@ -102,7 +102,7 @@ gulp.task("sass", function() {
 
 gulp.task("copy", function() {
 	return gulp.src(['./src/assets/**/*.*'])
-		.pipe(gulp.dest('./build/assets/'));
+		.pipe(gulp.dest('./build/'));
 });
 
 
