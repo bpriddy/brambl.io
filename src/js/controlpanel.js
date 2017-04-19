@@ -18,14 +18,24 @@ class ControlPanel {
 			'showUnfinished',
 			'editText',
 			'editTimestamp',
-			'deleteNode'
+			'deleteNode',
+			'toggleSection',
+			'addCuePoint',
+			'addedCuePoint',
+			'selectCuePoint',
+			'selectedCuePoint',
+			'updateScriptControlPanel',
+			'updateCuePointsControlPanel',
+			'applyCuePointChanges'
 		])
 		this.state = {
 			showingDescendants: false,
 			showingAncestors: false,
 			showingLabelBranch: false,
 			showingUnfinishedBranches: false,
-			currentNode: null
+			currentNode: null,
+			currentCuePoint: null,
+			currentSection: 'script'
 		}
 		this.create();
 		this.bindEvents();
@@ -33,6 +43,9 @@ class ControlPanel {
 
 	create() {
 		this.$parent.append(controlpanelEl());
+		this.$script = this.$parent.find(".section.script");
+		this.$cuepoints = this.$parent.find(".section.cuepoints")
+		this.$editcuepoint = this.$cuepoints.find(".editcuepoint");
 		this.$selectedNode = this.$parent.find(".selected-node");
 		this.$currentText = this.$selectedNode.find(".text");
 		this.$currentTimestamp = this.$selectedNode.find(".timestamp");
@@ -40,15 +53,23 @@ class ControlPanel {
 
 	bindEvents() {
 		this.$parent.find(".save.btn").on("click", this.saveChanges)
+		this.$parent.find(".btn.toggle").on("click", this.toggleSection)
 		this.$parent.find(".btn.showunfinished").on("click", this.showUnfinished)
-		this.events.on("node:select", this.showSelectedNode)
 		this.$selectedNode.find(".btn.video").on("click", this.showVideo)
 		this.$selectedNode.find(".btn.descendants").on("click", this.showDescendants)
 		this.$selectedNode.find(".btn.ancestors").on("click", this.showAncestors)
 		this.$selectedNode.find(".btn.labelbranch").on("click", this.showLabelBranch)
 		this.$selectedNode.find(".btn.delete").on("click", this.deleteNode)
 		this.$selectedNode.find(".text").on("keyup", this.editText)
-		this.$selectedNode.find(".timestamp").on("keyup", this.editTimestamp)
+
+		this.$cuepoints.find(".addcuepoint").on("click", this.addCuePoint)
+		this.$editcuepoint.find(".apply").on("click", this.applyCuePointChanges)
+		this.$cuepoints.find(".list .listitem").on("click", this.selectCuePoint)
+
+		this.events.on("node:select", this.showSelectedNode)
+		this.events.on("cuepoints:added", this.addedCuePoint)
+		this.events.on("cuepoints:selected", this.selectedCuePoint)
+
 	}
 
 	showVideo() {
@@ -108,6 +129,25 @@ class ControlPanel {
 		});
 	}
 
+	toggleSection() {
+		if(this.state.currentSection === "script") {
+			this.events.trigger("videoplayer:show")
+			this.state.currentSection = "cuepoints";
+			this.$cuepoints.addClass("active");
+			this.$script.removeClass("active");
+			this.$parent.find(".btn.toggle .cuepoints").addClass("active")
+			this.$parent.find(".btn.toggle .script").removeClass("active")
+		} else {
+			this.events.trigger("videoplayer:hide")
+			this.state.currentSection = "script";
+			this.$cuepoints.removeClass("active");
+			this.$script.addClass("active");
+			this.$parent.find(".btn.toggle .script").addClass("active")
+			this.$parent.find(".btn.toggle .cuepoints").removeClass("active");
+		}
+
+	}
+
 
 	editText(e) {
 		// console.log(this.$currentText.html());
@@ -144,17 +184,107 @@ class ControlPanel {
 		this.state.showAncestors = false;
 		this.$selectedNode.find(".btn.descendants").removeClass("selected")
 		this.$selectedNode.find(".btn.ancestors").removeClass("selected")
+		if(this.state.currentSection === "script") {
+			this.updateScriptControlPanel(node);
+		} else {
+			this.updateCuePointsControlPanel(node);
+		}
+	}
+
+	updateScriptControlPanel(node) {
 		if(node.data.id > -1) {
 			this.state.currentNode = node;
 			this.$selectedNode.find(".text").html(node.data.text)
-			let timestamp = (node.data.timestamp) ? node.data.timestamp : 0;
-			this.$selectedNode.find(".timestamp").html(timestamp)
 			this.$selectedNode.addClass("selected")
 		} else {
 			this.currentNode = null;
 			this.$selectedNode.removeClass("selected")
 		}
 	}
+
+	updateCuePointsControlPanel(node) {
+		console.log(this.state.currentCuePoint)
+		if(node.data.id > -1 && this.state.currentCuePoint) {
+			this.state.currentNode = node;
+			this.$editcuepoint.find(".text").html(node.data.text)
+			this.$editcuepoint.find(".id").html(node.data.id)
+			if(node.data.label === "ending") {
+				this.$editcuepoint.find(".ending").prop("checked", true);
+			} else {
+				this.$editcuepoint.find(".ending").prop("checked", false);
+			}
+			this.$selectedNode.addClass("selected")
+		} else {
+			this.currentNode = null;
+			this.state.currentCuePoint = null;
+			this.$editcuepoint.find(".timestamp").html("")
+			this.$editcuepoint.find(".loopAt").html("")
+			this.$editcuepoint.find(".text").html("")
+			this.$editcuepoint.find(".zone").html("")
+			this.$editcuepoint.find(".id").html("")
+			this.$editcuepoint.find(".ending").prop("checked", false);
+			this.$cuepoints.find(".list .listitem").removeClass("selected");
+		}
+	}
+
+	addCuePoint() {
+		this.events.trigger("cuepoints:add")
+	}
+
+	addedCuePoint(obj) {
+		this.$cuepoints.find(".list .listitem").removeClass("selected");
+		let $cp = $(`
+			<div class='cuepoint listitem selected' data-id="${obj.id}">
+				<div class="timestamp">timestamp: ${obj.timestamp}</div>
+				<div class="text">text: </div>
+			</div>
+		`)
+		console.log(this)
+		this.$cuepoints.find('.list').prepend($cp)
+
+		$cp.on("click", this.selectCuePoint)
+		this.state.currentCuePoint = obj.id;
+		this.selectedCuePoint(obj)
+	}
+
+	updateCuePoint(obj) {
+		// let $cp = this.$cuepoints.find(".listitem [data-id="+obj.id+"]");
+		// $cp.find(".timestamp").html(obj.timestamp)
+	}
+
+	selectCuePoint(e) {
+		this.$cuepoints.find(".list .listitem").removeClass("selected");
+		$(e.currentTarget).closest(".listitem").addClass("selected");
+		let id = parseInt($(e.currentTarget).attr("data-id"));
+		this.state.currentCuePoint = id;
+		this.events.trigger("cuepoints:select", id)
+	}
+
+	selectedCuePoint(obj) {
+		this.$editcuepoint.find(".timestamp").html(obj.timestamp)
+		this.$editcuepoint.find(".id").html(obj.nodeID)
+		this.$editcuepoint.find(".loopAt").html(obj.loopAt)
+		this.$editcuepoint.find(".zone").html(obj.zone)
+		this.$editcuepoint.find(".text").html(obj.text)
+		this.$editcuepoint.find(".ending").prop("checked", obj.ending);
+		this.$selectedNode.addClass("selected")
+	}
+
+	applyCuePointChanges() {
+		if(!this.state.currentCuePoint) return;
+		let obj = {
+			timestamp: this.$editcuepoint.find(".timestamp").html(),
+			loopAt: this.$editcuepoint.find(".loopAt").html(),
+			nodeID: this.$editcuepoint.find(".id").html(),
+			zone: this.$editcuepoint.find(".zone").html(),
+			text: this.$editcuepoint.find(".text").html(),
+			ending: this.$editcuepoint.find(".ending").prop("checked"),
+			id: this.state.currentCuePoint
+		}
+
+		this.events.trigger("cuepoints:edit", obj)
+	}
+
 }
 
 export default ControlPanel;

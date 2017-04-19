@@ -64,19 +64,19 @@ function getNodes(sObj) {
 router.post('/script/update',
 	(req, res) => {
 		let db = app.get("db");
-		let data = JSON.parse(req.body.changed);
+		let nodes = JSON.parse(req.body.nodes);
 		// console.log(data)
-		if(data.length) update(0);
-		function update(idx) {
+		if(nodes.length) update(0);
+		function updateNode(idx) {
 			let query = {
-				id: data[idx].id
+				id: nodes[idx].id
 			}
-			delete data[idx]._id;
+			delete nodes[idx]._id;
 			
-			db.collection('nodes').update(query, data[idx], {w:1}, (err, result) => {
+			db.collection('nodes').update(query, nodes[idx], {w:1}, (err, result) => {
 				if (err) throw err;
 				
-				if(idx<data.length-1) {
+				if(idx<nodes.length-1) {
 					idx++;
 					update(idx);
 				} else {
@@ -87,6 +87,33 @@ router.post('/script/update',
 			});
 
 		}
+
+
+		let cuepoints = JSON.parse(req.body.cuepoints);
+		// console.log(data)
+		if(cuepoints.length) updateCuepoint(0);
+		function updateCuepoint(idx) {
+			let query = {
+				id: cuepoints[idx].id
+			}
+			delete cuepoints[idx]._id;
+			
+			db.collection('cuepoints').update(query, cuepoints[idx], {w:1}, (err, result) => {
+				if (err) throw err;
+				
+				if(idx<cuepoints.length-1) {
+					idx++;
+					update(idx);
+				} else {
+					
+					res.send("success");
+
+				}
+			});
+
+		}
+
+
 
 		let toDelete = (req.body.deleted) ? JSON.parse(req.body.deleted) : undefined;
 		if(toDelete) remove(0);

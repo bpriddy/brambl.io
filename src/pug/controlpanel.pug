@@ -1,13 +1,34 @@
 .title Control Panel
-.save.btn save
-.btn.showunfinished Show Unfinished Branches
-.selected-node
-	.title Selected Node
-	.btn.video Show Video
-	.timestamp(contenteditable="true")
-	.btn.newconnection Make a New Connection
-	.btn.delete Delete this Node
-	.text(contenteditable="true")
-	.btn.small.descendants Show Descendants
-	.btn.small.ancestors Show Ancestors
-	.btn.small.labelbranch Only this Branch
+.btn.toggle
+	.option.script.active Switch to Cuepoints
+	.option.cuepoints Switch to Script
+.save.btn Save Changes
+.section.script.active
+	.btn.showunfinished Show Unfinished Branches
+	.selected-node
+		.title Selected Node
+		//- .btn.video Show Video
+		//- .timestamp(contenteditable="true")
+		.btn.newconnection Make a New Connection
+		.btn.delete Delete this Node
+		.text(contenteditable="true")
+		.btn.small.descendants Show Descendants
+		.btn.small.ancestors Show Ancestors
+		.btn.small.labelbranch Only this Branch
+.section.cuepoints
+	.btn.addcuepoint Add Cue Point
+	.editcuepoint
+		label timestamp
+		.timestamp(contenteditable=true)
+		label zone
+		.zone(contenteditable=true)
+		label text
+		.text
+		label node id
+		.id
+		label loopAt
+		.loopAt(contenteditable=true)
+		label ending
+		input.ending(type="checkbox")
+		.btn.apply apply changes
+	.list
