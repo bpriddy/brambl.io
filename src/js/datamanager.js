@@ -1,5 +1,6 @@
 import extend from 'lodash-es/extend';
 import bindAll from 'lodash-es/bindAll';
+import CuePoints from './cuepoints.js';
 
 class DataManager {
 	
@@ -12,6 +13,11 @@ class DataManager {
 			'saveChanges'
 		]);
 
+
+		this.cuepoints = new CuePoints({
+			events: this.events
+		})
+
 		this.changed = {
 			nodes:{},
 			cuepoints:{}
@@ -19,20 +25,7 @@ class DataManager {
 		this.events.on("node:update", this.update);
 		this.events.on("savechanges", this.saveChanges);
 		this.events.on("node:delete", this.deleteNode);
-
-		this.events.on("cuepoint:update", this.cuepointUpdate);
 	}	
-
-	cuepointUpdate(e) {
-		if(!this.changed.cuepoints[e.id]) {
-			this.cuepoints.forEach((cuepoint) => {
-				if(e.id === cuepoint.id) this.changed.cuepoints[e.id] = cuepoint;
-			})
-		}
-		e.changed.forEach((change) => {
-			this.changed.cuepoints[e.id][change] = e.data[change];
-		})
-	}
 
 	update(e) {
 		if(!this.changed.nodes[e.id]) {

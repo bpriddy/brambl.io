@@ -6,7 +6,6 @@ import Lines from './lines.js';
 import ZoomAndPan from './zoomandpan.js';
 import ControlPanel from './controlpanel.js';
 import VideoPlayer from './videoplayer.js';
-import CuePoints from './cuepoints.js';
 
 import scriptEl from '../pug/script.pug';
 
@@ -74,10 +73,6 @@ class Script {
 			zoomSpeed: 2,
 			limitZoom: true,
 			excludedClasses: ['node'],
-			events: this.events
-		})
-
-		this.cuepoints = new CuePoints({
 			events: this.events
 		})
 

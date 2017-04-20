@@ -281,7 +281,9 @@ class ControlPanel {
 			ending: this.$editcuepoint.find(".ending").prop("checked"),
 			id: this.state.currentCuePoint
 		}
-
+		let $li = this.$cuepoints.find(".list .listitem[data-id='"+this.state.currentCuePoint+"']");
+		console.log($li)
+		$li.find(".text").html("text: "+this.$editcuepoint.find(".text").html())
 		this.events.trigger("cuepoints:edit", obj)
 	}
 
