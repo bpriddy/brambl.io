@@ -56,7 +56,7 @@ class TextNode {
 		this.events.trigger('node:update', {
 			changed: ['position'],
 			data: this.data,
-			id: this.data.id
+			node: this.data
 		})
 	}
 

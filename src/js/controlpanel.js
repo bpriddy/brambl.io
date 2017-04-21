@@ -17,7 +17,6 @@ class ControlPanel {
 			'showLabelBranch',
 			'showUnfinished',
 			'editText',
-			'editTimestamp',
 			'deleteNode',
 			'toggleSection',
 			'addCuePoint',
@@ -49,6 +48,7 @@ class ControlPanel {
 		this.$selectedNode = this.$parent.find(".selected-node");
 		this.$currentText = this.$selectedNode.find(".text");
 		this.$currentTimestamp = this.$selectedNode.find(".timestamp");
+		this.createCuePoints();
 	}
 
 	bindEvents() {
@@ -70,6 +70,12 @@ class ControlPanel {
 		this.events.on("cuepoints:added", this.addedCuePoint)
 		this.events.on("cuepoints:selected", this.selectedCuePoint)
 
+	}
+
+	createCuePoints() {
+		this.cuepoints.forEach((cp) => {
+			this.addedCuePoint(cp);
+		})
 	}
 
 	showVideo() {
@@ -151,25 +157,14 @@ class ControlPanel {
 
 	editText(e) {
 		// console.log(this.$currentText.html());
-		
 		this.events.trigger('node:update', {
 			changed: ['text'],
 			data: {text: this.$currentText.html() },
-			id: this.state.currentNode.data.id
+			node: this.state.currentNode.data
 		})
 
 	}
 
-	editTimestamp(e) {
-		// console.log(this.$currentTimestamp);
-		
-		this.events.trigger('node:update', {
-			changed: ['timestamp'],
-			data: {timestamp: this.$currentTimestamp.html() },
-			id: this.state.currentNode.data.id
-		})
-
-	}
 
 	deleteNode(e) {
 		this.events.trigger("node:delete", this.state.currentNode.data.id)
@@ -228,7 +223,7 @@ class ControlPanel {
 	}
 
 	addCuePoint() {
-		this.events.trigger("cuepoints:add")
+		this.events.trigger("cuepoints:add", this.scriptID)
 	}
 
 	addedCuePoint(obj) {
@@ -239,7 +234,7 @@ class ControlPanel {
 				<div class="text">text: </div>
 			</div>
 		`)
-		console.log(this)
+
 		this.$cuepoints.find('.list').prepend($cp)
 
 		$cp.on("click", this.selectCuePoint)
@@ -273,9 +268,9 @@ class ControlPanel {
 	applyCuePointChanges() {
 		if(!this.state.currentCuePoint) return;
 		let obj = {
-			timestamp: this.$editcuepoint.find(".timestamp").html(),
-			loopAt: this.$editcuepoint.find(".loopAt").html(),
-			nodeID: this.$editcuepoint.find(".id").html(),
+			timestamp: parseFloat(this.$editcuepoint.find(".timestamp").html()),
+			loopAt: parseFloat(this.$editcuepoint.find(".loopAt").html()),
+			nodeID: parseInt(this.$editcuepoint.find(".id").html()),
 			zone: this.$editcuepoint.find(".zone").html(),
 			text: this.$editcuepoint.find(".text").html(),
 			ending: this.$editcuepoint.find(".ending").prop("checked"),

@@ -21,7 +21,8 @@ class VideoPlayer {
 			'seek',
 			'handleTimeKeyDown',
 			'pause',
-			'addCuePoint'
+			'addCuePoint',
+			'createCuePoints'
 		])
 		this.create();
 		this.bindEvents();
@@ -37,6 +38,16 @@ class VideoPlayer {
 		this.$controls = this.$el.find(".controls");
 		this.$playbar = this.$controls.find(".playbar");
 		this.paused = true;
+		setTimeout(() => {
+			this.createCuePoints();
+		}, 1000)
+	}
+
+	createCuePoints() {
+		console.log(this)
+		this.cuepoints.forEach((cp) => {
+			this.addCuePoint(cp)
+		})
 	}
 
 	bindEvents() {
@@ -92,13 +103,14 @@ class VideoPlayer {
 
 	addCuePoint(obj) {
 		let cp = $("<div class='cuepoint' data-id="+obj.id+"></div>")
-		let perc = (this.video.currentTime/this.video.duration * 100) + "%";
-		console.log(perc)
+		if(!obj.timestamp || obj.timestamp < 0) obj.timestamp = this.video.currentTime;
+		// console.log(obj.timestamp)
+		let perc = (obj.timestamp/this.video.duration * 100) + "%";
+		// console.log(perc)
 		cp.css({
 			left: perc
 		})
 		this.$playbar.find(".cuepoints").append(cp)
-		obj.timestamp = this.video.currentTime;
 		this.events.trigger("cuepoints:edit", obj)
 	}
 

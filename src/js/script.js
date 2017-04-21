@@ -48,8 +48,9 @@ class Script {
 			$.get("/api/script?scriptID="+this.id, (resp) => {
 				this.content.data = JSON.parse(resp.response);
 				this.content.data.nodes = JSON.parse(this.content.data.nodes.response);
-				console.log(this.content.data)
+				this.content.data.cuepoints = JSON.parse(this.content.data.cuepoints.response);
 				this.datamanager.setNodes(this.content.data.nodes);
+				this.datamanager.setCuePoints(this.content.data.cuepoints);
 				resolve()
 			})
 		})
@@ -61,7 +62,8 @@ class Script {
 		this.videoplayer = new VideoPlayer({
 			$parent: $scriptContainer.find(".video-player"),
 			videoURL: this.content.data.script.videoURL,
-			events: this.events
+			events: this.events,
+			cuepoints: this.content.data.cuepoints
 		});
 
 		zoomandpan = new ZoomAndPan({
@@ -104,7 +106,9 @@ class Script {
 
 		controlpanel = new ControlPanel({
 			$parent: $scriptContainer.find(".control-panel"),
-			events: this.events
+			scriptID: this.id,
+			events: this.events,
+			cuepoints: this.content.data.cuepoints
 		})
 	}
 

@@ -7,10 +7,16 @@ class DataManager {
 	constructor(options) {
 		extend(this, options);
 		bindAll(this, [
+			'saveChanges',
 			'setNodes',
+
+			'addNode',
+			'updateNode',
 			'deleteNode',
-			'update',
-			'saveChanges'
+
+			'addCuePoint',
+			'updateCuePoint',
+			'deleteCuePoint'
 		]);
 
 
@@ -22,44 +28,84 @@ class DataManager {
 			nodes:{},
 			cuepoints:{}
 		};
-		this.events.on("node:update", this.update);
 		this.events.on("savechanges", this.saveChanges);
+
+		this.events.on("node:add", this.addNode);
+		this.events.on("node:update", this.updateNode);
 		this.events.on("node:delete", this.deleteNode);
+
+		this.events.on("cuepoints:added", this.addCuePoint);
+		this.events.on("cuepoints:edited", this.updateCuePoint);
+		this.events.on("cuepoints:delete", this.deleteCuePoint);
 	}	
 
-	update(e) {
-		if(!this.changed.nodes[e.id]) {
-			this.nodes.forEach((node) => {
-				if(e.id === node.id) this.changed.nodes[e.id] = node;
+	updateNode(e) {
+		if(!this.changed.nodes[e.node.id]) {
+			this.changed.nodes[e.node.id] = e.node;
+		} 
+		e.changed.forEach((change) => {
+			this.changed.nodes[e.node.id][change] = e.data[change];
+		})
+		console.log(this.changed)
+	}
+
+	updateCuePoint(e) {
+		if(!this.changed.cuepoints[e.id]) {
+			this.changed.cuepoints[e.id] = e
+		} else {
+			Object.keys(this.changed.cuepoints).forEach((key) => {
+				if(e.id === key) {
+					Object.keys(e).forEach((prop) => {
+						this.changed.cuepoints[e.id][prop] = e[prop];
+					})
+				}
 			})
 		}
-		e.changed.forEach((change) => {
-			this.changed.nodes[e.id][change] = e.data[change];
-		})
+
+		// console.log(e)
+	}
+
+	addNode(e) {
 
 	}
 
 	saveChanges() {
-		let nodes = [], cuepoints = [];
-		// console.log(this.changed)
+
+		let data = { nodes: [], cuepoints: [] };
 		Object.keys(this.changed.nodes).forEach((key) => {
-			nodes.push(this.changed.nodes[key]);
+			data.nodes.push(this.changed.nodes[key]);
 		})
+		data.nodes = JSON.stringify(data.nodes);
+
 		Object.keys(this.changed.cuepoints).forEach((key) => {
-			cuepoints.push(this.changed.cuepoints[key]);
+			data.cuepoints.push(this.changed.cuepoints[key]);
 		})
-		// console.log(nodes)
+		data.cuepoints = JSON.stringify(data.cuepoints);
+
 		$.ajax({
 			type: "post",
-			url: "/api/script/update",
-			data: {
-				nodes: JSON.stringify(nodes),
-				cuepoints: cuepoints
-			}
+			url: "/api/update",
+			data: data
 		})
 		.done((e) => {
 			console.log(e)
-		 this.changed = {}
+			 this.changed = {cuepoints:{},nodes:{}}
+		})
+	}
+
+	addNode(e) {
+		console.log('need to write code for adding node');
+	}
+
+	addCuePoint(e) {
+		console.log(e)
+		$.ajax({
+			type: "post",
+			url: "/api/cuepoints/add",
+			data: { cp: JSON.stringify(e) }
+		})
+		.done((e) => {
+			console.log(e)
 		})
 	}
 
@@ -76,8 +122,27 @@ class DataManager {
 		})
 	}
 
+
+	deleteCuePoint(e) {
+		$.ajax({
+			type: "post",
+			url: "/api/script/delete",
+			data: {
+				id: e
+			}
+		})
+		.done((e) => {
+			console.log(e)
+		})
+	}
+
+
 	setNodes(data) {
 		this.nodes = data;
+	}
+
+	setCuePoints(data) {
+		this.cuepoints.setCollection(data);
 	}
 
 }

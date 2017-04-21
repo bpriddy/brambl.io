@@ -26,7 +26,7 @@ class CuePoints {
 		this.events.on("cuepoints:select", this.select);
 	}
 
-	add() {
+	add(sid) {
 		this.state.highestID++;
 		let cp = {
 			id: this.state.highestID,
@@ -34,7 +34,8 @@ class CuePoints {
 			nodeID: -1,
 			loopAt: -1,
 			ending: false,
-			text: null
+			text: null,
+			scriptID: sid
 		}
 		this.collection.push(cp)
 		this.events.trigger("cuepoints:added", cp);
@@ -50,7 +51,7 @@ class CuePoints {
 	}
 
 	edit(obj) {
-		console.log('edit', obj)
+		// console.log('edit', obj)
 		this.collection.forEach((cp) => {
 			if(cp.id === obj.id) {
 				cp.nodeID = obj.nodeID
@@ -62,11 +63,18 @@ class CuePoints {
 				this.events.trigger("cuepoints:edited", cp)
 			}
 		})
-		console.log(this.collection)
+		// console.log(this.collection)
 	}
 
 	delete() {
 
+	}
+
+	setCollection(data) {
+		this.collection = data;
+		this.collection.forEach((cp) => {
+			if(cp.id > this.state.highestID) this.state.highestID = cp.id;
+		})
 	}
 }
 
