@@ -246,7 +246,7 @@ class ControlPanel extends Base {
 	}
 
 	selectCuePoint(e) {
-		alert(e)
+		console.log('control panel select cuepoint')
 		this.$cuepoints.find(".list .listitem").removeClass("selected");
 		$(e.currentTarget).closest(".listitem").addClass("selected");
 		let id = parseInt($(e.currentTarget).attr("data-id"));

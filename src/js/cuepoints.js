@@ -39,7 +39,6 @@ class CuePoints extends Base{
 	}
 
 	select(id) {
-
 		this.content.collection.forEach((cp) => {
 			if(cp.id === id) {
 				this.events.trigger("cuepoints:selected", cp)

@@ -10,7 +10,8 @@ class TextNode extends Base {
 			'onNodeSelect',
 			'remove',
 			'breakRefs',
-			'killDOM'
+			'killDOM',
+			'selectedCuePoint'
 		])
 		if(!this.data.position) {
 			this.data.position = { left: 0, top: 0};
@@ -28,6 +29,7 @@ class TextNode extends Base {
 	bindEvents() {
 		this.$el.bind("mousedown", this.startDrag);
 		this.events.bind("node:select", this.onNodeSelect);
+		this.events.on("cuepoints:selected", this.selectedCuePoint)
 	}
 
 	unbindEvents() {
@@ -35,6 +37,12 @@ class TextNode extends Base {
 		this.$appEl.unbind("mouseup", this.stopDrag);
 		this.$el.unbind("mousedown", this.startDrag);
 		this.events.unbind("node:select", this.onNodeSelect);
+	}
+
+	selectedCuePoint(cp) {
+		if(cp.nodeID === this.data.id) {
+			this.events.trigger("node:select", this);
+		}
 	}
 
 	startDrag(e) {
