@@ -1,14 +1,13 @@
-import extend from 'lodash-es/extend';
-import bindAll from 'lodash-es/bindAll';
+import Base from './base.js';
 
 import lineSVG from '../pug/line.pug';
 
-class Lines {
+class Lines extends Base {
 
 	constructor(options) {
-		extend(this,options);
-		bindAll(this, [
+		super(options, [
 			'create',
+			'bindEvents',
 			'onNodeMove',
 			'positionLine',
 			'moveIncomingLines',
@@ -18,13 +17,8 @@ class Lines {
 			'highlightAncestors',
 			'highlightLabelBranch'
 		])
-		this.state = {}
 		this.create()
-		this.events.on("node:move", this.onNodeMove)
-		this.events.on("node:select", this.showNodeLines)
-		this.events.on("node:show:descendants", this.highlightDescendants)
-		this.events.on("node:show:ancestors", this.highlightAncestors)
-		this.events.on("node:show:labelbranch", this.highlightLabelBranch)
+		this.bindEvents();
 	}
 
 	create() {
@@ -52,6 +46,14 @@ class Lines {
 			});
 			
 		})
+	}
+
+	bindEvents() {
+		this.events.on("node:move", this.onNodeMove)
+		this.events.on("node:select", this.showNodeLines)
+		this.events.on("node:show:descendants", this.highlightDescendants)
+		this.events.on("node:show:ancestors", this.highlightAncestors)
+		this.events.on("node:show:labelbranch", this.highlightLabelBranch)
 	}
 
 	positionLine($svg, x1,y1,x2,y2) {

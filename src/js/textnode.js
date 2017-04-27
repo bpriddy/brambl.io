@@ -1,10 +1,17 @@
-import extend from 'lodash-es/extend';
-import bindAll from 'lodash-es/bindAll';
+import Base from './base.js';
 
-class TextNode {
+class TextNode extends Base {
 
 	constructor(options) {
-		extend(this, options);
+		super(options, [
+			'startDrag',
+			'drag',
+			'stopDrag',
+			'onNodeSelect',
+			'remove',
+			'breakRefs',
+			'killDOM'
+		])
 		if(!this.data.position) {
 			this.data.position = { left: 0, top: 0};
 		}
@@ -14,20 +21,11 @@ class TextNode {
 
 	create() {
 		let style = `left: ${this.data.position.left}px; top: ${this.data.position.top}px`;
-		this.$el = $(`<div class='node ${this.data.label}' data-id='${this.data.id}' style='${style}'>${this.data.text}</div>`);
+		this.$el = $(`<div class='node ${this.data.label}' data-id='${this.data.id}' style='${style}'>${this.data.id} ${this.data.text}</div>`);
 		this.$container.append(this.$el);
 	}
 
 	bindEvents() {
-		bindAll(this, [
-			'startDrag',
-			'drag',
-			'stopDrag',
-			'onNodeSelect',
-			'remove',
-			'breakRefs',
-			'killDOM'
-		])
 		this.$el.bind("mousedown", this.startDrag);
 		this.events.bind("node:select", this.onNodeSelect);
 	}
@@ -61,8 +59,8 @@ class TextNode {
 	}
 
 	drag(e) {
-		this.data.position.left = (e.pageX * this.zoomandpan.zoom) - (this.dragOffsetX * this.zoomandpan.zoom);
-		this.data.position.top = (e.pageY * this.zoomandpan.zoom) - (this.dragOffsetY * this.zoomandpan.zoom);
+		this.data.position.left = (e.pageX * this.zoomandpan.state.zoom) - (this.dragOffsetX * this.zoomandpan.state.zoom);
+		this.data.position.top = (e.pageY * this.zoomandpan.state.zoom) - (this.dragOffsetY * this.zoomandpan.state.zoom);
 		this.$el.css({left: this.data.position.left, top: this.data.position.top});
 		
 		this.events.trigger('node:move', this);

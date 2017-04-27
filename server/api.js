@@ -29,7 +29,7 @@ router.get('/script/',
 				let obj = {
 					response: JSON.stringify(retObj)
 				}
-				printWebVRReadyJSON(retObj)
+				// printWebVRReadyJSON(retObj)
 				res.send(obj);
 			})
 		
@@ -76,13 +76,15 @@ function printWebVRReadyJSON(obj) {
 			gary: null,
 			claire: null
 		}
+
+		//TODO:   wtf is the below not working?  some nodes aren't accounted for in the cuepoints
 		nodeHash[cp.nodeID].outgoing.forEach((oid) => {
 			if(
 				nodeHash[oid].label !== "nick" &&
 				nodeHash[oid].label !== "ending"
 			) {
 				if(cuepointNodeHash[oid] === undefined)
-					console.log(zone, oid, nodeHash[oid].text, cuepointNodeHash[oid]);
+					console.log(nodeHash[oid].label, oid, nodeHash[oid].text, cuepointNodeHash[oid]);
 				// if(cuepointNodeHash[oid]) {
 				// 	let z = cuepointNodeHash[oid].zone;
 				// 	let ts = cuepointNodeHash[oid].timestamp.toFixed(2);

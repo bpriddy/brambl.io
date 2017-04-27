@@ -1,21 +1,18 @@
-import extend from 'lodash-es/extend';
-import bindAll from 'lodash-es/bindAll';
+import Base from './base.js';
 
-class CuePoints {
+class CuePoints extends Base{
 	
 	constructor(options) {
-		extend(this, options);
-		bindAll(this, [
+		super(options, [
 			'bindEvents',
 			'add',
 			'edit',
 			'delete',
 			'select'
 		])
-		this.state = {
-			highestID: 0
-		}
-		this.collection = [];
+		this.state.highestID = 0;
+		
+		this.content.collection = [];
 		this.bindEvents();
 	}
 
@@ -37,14 +34,14 @@ class CuePoints {
 			text: null,
 			scriptID: sid
 		}
-		this.collection.push(cp)
+		this.content.collection.push(cp)
 		this.events.trigger("cuepoints:added", cp);
 	}
 
 	select(id) {
-		this.collection.forEach((cp) => {
+
+		this.content.collection.forEach((cp) => {
 			if(cp.id === id) {
-				console.log(cp)
 				this.events.trigger("cuepoints:selected", cp)
 			}
 		})
@@ -52,7 +49,7 @@ class CuePoints {
 
 	edit(obj) {
 		// console.log('edit', obj)
-		this.collection.forEach((cp) => {
+		this.content.collection.forEach((cp) => {
 			if(cp.id === obj.id) {
 				cp.nodeID = obj.nodeID
 				cp.timestamp = obj.timestamp
@@ -71,8 +68,8 @@ class CuePoints {
 	}
 
 	setCollection(data) {
-		this.collection = data;
-		this.collection.forEach((cp) => {
+		this.content.collection = data;
+		this.content.collection.forEach((cp) => {
 			if(cp.id > this.state.highestID) this.state.highestID = cp.id;
 		})
 	}

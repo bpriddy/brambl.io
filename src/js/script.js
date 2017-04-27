@@ -1,5 +1,4 @@
-import extend from 'lodash-es/extend';
-import bindAll from 'lodash-es/bindAll';
+import Base from './base.js';
 
 import TextNode from './textnode.js';
 import Lines from './lines.js';
@@ -18,42 +17,18 @@ let $scriptContainer = null;
 let zoomandpan = null;
 let controlpanel = null;
 
-class Script {
+class Script extends Base {
 	
 	constructor(options) {
-		extend(this,options);
-		bindAll(this,[
-			'load',
+		super(options, [
 			'create',
 			'showLabelBranch',
 			'handleNodeSelect',
 			'showUnfinished',
 			'deleteNode'
-		])
-		this.content = {
-			data: {},
-			nodes: {},
-			nodeBranchMap: {}
-		}
-		this.data = [];
-		this.load()
-			.then(() => {
-				this.create();
-				this.bindEvents();
-			});
-	}
-
-	load() {
-		return new Promise((resolve, reject) => {
-			$.get("/api/script?scriptID="+this.id, (resp) => {
-				this.content.data = JSON.parse(resp.response);
-				this.content.data.nodes = JSON.parse(this.content.data.nodes.response);
-				this.content.data.cuepoints = JSON.parse(this.content.data.cuepoints.response);
-				this.datamanager.setNodes(this.content.data.nodes);
-				this.datamanager.setCuePoints(this.content.data.cuepoints);
-				resolve()
-			})
-		})
+		]);
+		this.create();
+		this.bindEvents();
 	}
 
 	create() {
@@ -66,28 +41,33 @@ class Script {
 			cuepoints: this.content.data.cuepoints
 		});
 
-		zoomandpan = new ZoomAndPan({
+		this.zoomandpan = new ZoomAndPan({
 			parent: $scriptContainer.find(".stage")[0], 
-			zoom: config.startingZoom,
-			dampingFactor: 0.9,
-			minZoom: 1,
-			maxZoom: 20,
-			zoomSpeed: 2,
-			limitZoom: true,
-			excludedClasses: ['node'],
-			events: this.events
+			events: this.events,
+			state: {
+				zoom: config.startingZoom,
+				dampingFactor: 0.9,
+				minZoom: 1,
+				maxZoom: 20,
+				zoomSpeed: 2,
+				limitZoom: true,
+				excludedClasses: ['node'],
+				zoomEnabled: true
+			}
 		})
 
+		this.content.nodes = {};
 		this.content.data.nodes.forEach((node) => {
 			this.content.nodes[node.id] = new TextNode({
 				data: node,
-				zoomandpan: zoomandpan,
+				zoomandpan: this.zoomandpan,
 				$appEl: this.$parent,
-				$container: zoomandpan.$panner,
+				$container: this.zoomandpan.$panner,
 				events: this.events
 			});
 		})
 
+		this.content.nodeBranchMap = {};
 		Object.keys(this.content.nodes).forEach((key) => {
 			this.content.nodeBranchMap[key] = {};
 			if(!this.content.nodes[key].data.outgoing) this.content.nodes[key].data.outgoing = [];
@@ -100,7 +80,7 @@ class Script {
 		lines = new Lines({
 			nodes: this.content.nodes,
 			nodeBranchMap: this.content.nodeBranchMap,
-			$parent: zoomandpan.$panner,
+			$parent: this.zoomandpan.$panner,
 			events: this.events
 		})
 
@@ -120,7 +100,6 @@ class Script {
 	}
 
 	deleteNode(e) {
-		console.log(e)
 		this.content.nodes[e].remove();
 		delete this.content.nodes[e];
 		console.log(this.content.data[e])

@@ -1,13 +1,11 @@
-import extend from 'lodash-es/extend';
-import bindAll from 'lodash-es/bindAll';
+import Base from './base.js';
 
 import controlpanelEl from '../pug/controlpanel.pug';
 
-class ControlPanel {
+class ControlPanel extends Base {
 	
 	constructor(options) {
-		extend(this, options);
-		bindAll(this, [
+		super(options, [
 			'bindEvents',
 			'saveChanges',
 			'showSelectedNode',
@@ -27,15 +25,15 @@ class ControlPanel {
 			'updateCuePointsControlPanel',
 			'applyCuePointChanges'
 		])
-		this.state = {
-			showingDescendants: false,
-			showingAncestors: false,
-			showingLabelBranch: false,
-			showingUnfinishedBranches: false,
-			currentNode: null,
-			currentCuePoint: null,
-			currentSection: 'script'
-		}
+
+		this.state.showingDescendants =  false;
+		this.state.showingAncestors =  false;
+		this.state.showingLabelBranch =  false;
+		this.state.showingUnfinishedBranches =  false;
+		this.state.currentNode =  null;
+		this.state.currentCuePoint =  null;
+		this.state.currentSection =  'script';
+
 		this.create();
 		this.bindEvents();
 	}
@@ -248,6 +246,7 @@ class ControlPanel {
 	}
 
 	selectCuePoint(e) {
+		alert(e)
 		this.$cuepoints.find(".list .listitem").removeClass("selected");
 		$(e.currentTarget).closest(".listitem").addClass("selected");
 		let id = parseInt($(e.currentTarget).attr("data-id"));
@@ -256,6 +255,7 @@ class ControlPanel {
 	}
 
 	selectedCuePoint(obj) {
+		this.state.currentCuePoint = obj.id;
 		this.$editcuepoint.find(".timestamp").html(obj.timestamp)
 		this.$editcuepoint.find(".id").html(obj.nodeID)
 		this.$editcuepoint.find(".loopAt").html(obj.loopAt)
@@ -277,7 +277,6 @@ class ControlPanel {
 			id: this.state.currentCuePoint
 		}
 		let $li = this.$cuepoints.find(".list .listitem[data-id='"+this.state.currentCuePoint+"']");
-		console.log($li)
 		$li.find(".text").html("text: "+this.$editcuepoint.find(".text").html())
 		this.events.trigger("cuepoints:edit", obj)
 	}

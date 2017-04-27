@@ -25,7 +25,7 @@ var fs = require("fs");
 
 gulp.task('vendor', function() {
 	return rollup.rollup({
-			entry: "./src/vendor.js",
+			entry: "./src/js/vendor.js",
 			plugins: [
 				resolve({
 					module: true,
@@ -55,7 +55,7 @@ gulp.task('vendor', function() {
 
 gulp.task("js", function() {
 	return rollup.rollup({
-			entry: "./src/main.js",
+			entry: "./src/js/main.js",
 			plugins: [
 				pug(),
 				resolve({

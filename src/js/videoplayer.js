@@ -1,16 +1,13 @@
-import extend from 'lodash-es/extend';
-import bindAll from 'lodash-es/bindAll';
+import Base from './base.js';
 
 import videoplayerEl from '../pug/videoplayer.pug';
 
 const CDN = "/assets/";
 
-class VideoPlayer {
+class VideoPlayer extends Base {
 
 	constructor(options) {
-		extend(this, options);
-		this.videoURL = CDN + this.videoURL;
-		bindAll(this, [
+		super(options, [
 			'bindEvents',
 			'playToggle',
 			'handleNodeSelect',
@@ -22,8 +19,12 @@ class VideoPlayer {
 			'handleTimeKeyDown',
 			'pause',
 			'addCuePoint',
-			'createCuePoints'
+			'editCuePoint',
+			'createCuePoints',
+			'selectCuePoint',
+			'handleSelectedCuePoint'
 		])
+		this.videoURL = CDN + this.videoURL;
 		this.create();
 		this.bindEvents();
 	}
@@ -44,16 +45,22 @@ class VideoPlayer {
 	}
 
 	createCuePoints() {
-		console.log(this)
-		this.cuepoints.forEach((cp) => {
-			this.addCuePoint(cp)
+		this.cuepoints.forEach((obj) => {
+			let cp = $("<div class='cuepoint' data-id="+obj.id+"></div>")
+			if(!obj.timestamp || obj.timestamp < 0) obj.timestamp = this.video.currentTime;
+			let perc = (obj.timestamp/this.video.duration * 100) + "%";
+			cp.css({ left: perc });
+			this.$playbar.find(".cuepoints").append(cp);
 		})
+		this.$playbar.find(".cuepoint").on("click", this.selectCuePoint)
 	}
 
 	bindEvents() {
 		this.events.on("videoplayer:show", this.show);
 		this.events.on("videoplayer:hide", this.hide);
 		this.events.on("cuepoints:added", this.addCuePoint)
+		this.events.on("cuepoints:edit", this.editCuePoint)
+		this.events.on("cuepoints:selected", this.handleSelectedCuePoint)
 		this.$controls.find(".playpause").on("click", this.playToggle);
 		this.events.on("node:select", this.handleNodeSelect)
 		this.$playbar.on("click", this.seek);
@@ -61,6 +68,7 @@ class VideoPlayer {
 		this.$controls.find(".time").on("click", this.pause)
 	}
 
+	
 	playToggle() {
 		this.paused = !this.paused;
 		if(this.paused) {
@@ -102,16 +110,24 @@ class VideoPlayer {
 	}
 
 	addCuePoint(obj) {
-		let cp = $("<div class='cuepoint' data-id="+obj.id+"></div>")
+		let $cp = $("<div class='cuepoint' data-id="+obj.id+"></div>")
 		if(!obj.timestamp || obj.timestamp < 0) obj.timestamp = this.video.currentTime;
 		// console.log(obj.timestamp)
 		let perc = (obj.timestamp/this.video.duration * 100) + "%";
 		// console.log(perc)
-		cp.css({
+		$cp.css({
 			left: perc
 		})
-		this.$playbar.find(".cuepoints").append(cp)
+		this.$playbar.find(".cuepoints").append($cp)
 		this.events.trigger("cuepoints:edit", obj)
+	}
+
+	editCuePoint(obj) {
+		let $cp = this.$playbar.find('.cuepoints .cuepoint[data-id='+obj.id+']');
+		let perc = (obj.timestamp/this.video.duration * 100) + "%";
+		$cp.css({
+			left: perc
+		})
 	}
 
 	handleTimeKeyDown(e) {
@@ -132,10 +148,26 @@ class VideoPlayer {
 		this.$parent.removeClass("show");
 	}
 
-	seek(e) {
-		let seekTo = (e.offsetX/this.$playbar.width() * this.video.duration).toFixed(4);
-		this.video.currentTime = seekTo;
+
+	selectCuePoint(e) {
+		let id = parseInt($(e.target).attr("data-id"));
+		this.events.trigger("cuepoints:select", id)
+	}
+
+	handleSelectedCuePoint(e) {
+		this.video.currentTime = e.timestamp;
 		this.update()
+	}
+
+	seek(e) {
+		let perc;
+		if(!$(e.target).hasClass('cuepoint')) {
+			perc = e.offsetX/this.$playbar.width();
+			let seekTo = (perc * this.video.duration).toFixed(4);
+			this.video.currentTime = seekTo;
+			this.update()
+		}
+		
 	}
 
 	update() {

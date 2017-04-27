@@ -1,12 +1,13 @@
-import extend from 'lodash-es/extend';
-import bindAll from 'lodash-es/bindAll';
+import Base from './base.js';
 import CuePoints from './cuepoints.js';
 
-class DataManager {
+class DataManager extends Base {
 	
 	constructor(options) {
-		extend(this, options);
-		bindAll(this, [
+
+		super(options, [
+			'load',
+
 			'saveChanges',
 			'setNodes',
 
@@ -37,6 +38,19 @@ class DataManager {
 		this.events.on("cuepoints:added", this.addCuePoint);
 		this.events.on("cuepoints:edited", this.updateCuePoint);
 		this.events.on("cuepoints:delete", this.deleteCuePoint);
+	}
+
+	load(url) {
+		return new Promise((resolve, reject) => {
+			$.get(url, (resp) => {
+				let data = JSON.parse(resp.response);
+				data.nodes = JSON.parse(data.nodes.response);
+				data.cuepoints = JSON.parse(data.cuepoints.response);
+				this.nodes = data.nodes;
+				this.cuepoints.setCollection(data.cuepoints);
+				resolve(data)
+			})
+		})
 	}	
 
 	updateNode(e) {
@@ -50,6 +64,7 @@ class DataManager {
 	}
 
 	updateCuePoint(e) {
+		console.log(this.changed)
 		if(!this.changed.cuepoints[e.id]) {
 			this.changed.cuepoints[e.id] = e
 		} else {
@@ -77,6 +92,7 @@ class DataManager {
 		})
 		data.nodes = JSON.stringify(data.nodes);
 
+		console.log(this.changed.cuepoints)
 		Object.keys(this.changed.cuepoints).forEach((key) => {
 			data.cuepoints.push(this.changed.cuepoints[key]);
 		})
