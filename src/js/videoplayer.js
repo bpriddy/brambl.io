@@ -88,7 +88,7 @@ class VideoPlayer extends Base {
 	}
 
 	handleNodeSelect(node) {
-		console.log(node)
+		// console.log(node)
 		// let ts, perc;
 		// if(
 		// 	node.data.id === -1 ||

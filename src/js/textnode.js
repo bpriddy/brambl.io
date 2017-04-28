@@ -89,7 +89,7 @@ class TextNode extends Base {
 	}
 
 	remove() {
-		console.log(this);
+		// console.log(this);
 		this.unbindEvents();
 		this.killDOM();
 		this.breakRefs();

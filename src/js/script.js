@@ -102,7 +102,7 @@ class Script extends Base {
 	deleteNode(e) {
 		this.content.nodes[e].remove();
 		delete this.content.nodes[e];
-		console.log(this.content.data[e])
+		// console.log(this.content.data[e])
 	}
 
 	handleNodeSelect(node) {
@@ -133,12 +133,12 @@ class Script extends Base {
 		Object.keys(this.content.nodes).forEach((key) => {
 			let og = this.content.nodes[key].data.outgoing;
 			if(og.length > 4) {
-				console.log(og);
+				// console.log(og);
 				var str = "";
 				og.forEach((key) => {
 					str += " "+this.content.nodes[key].data.label;
 				})
-				console.log(str)
+				// console.log(str)
 				// console.log(og, this.content.nodes[key].data.label, og.length === 4, og.length === 1, this.content.nodes[og[0]].data.label === "ending");
 			}
 			if(

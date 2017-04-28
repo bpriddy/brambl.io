@@ -65,11 +65,17 @@ function printWebVRReadyJSON(obj) {
 	}
 	Object.keys(cuepointHash).forEach((key) => {
 		let cp = cuepointHash[key];
+
+		if(!nodeHash[cp.nodeID]) {
+			console.log(cp);
+			return;
+		}
 		let zone = cp.zone;
 		let child = false;
 		nodeHash[cp.nodeID].incoming.forEach((iid) => {
 			if(zone === nodeHash[iid].label) child = true;
 		});
+		
 
 		let responses = {
 			dan: null,
@@ -77,7 +83,6 @@ function printWebVRReadyJSON(obj) {
 			claire: null
 		}
 
-		//TODO:   wtf is the below not working?  some nodes aren't accounted for in the cuepoints
 		nodeHash[cp.nodeID].outgoing.forEach((oid) => {
 			if(
 				nodeHash[oid].label !== "nick" &&
@@ -85,27 +90,37 @@ function printWebVRReadyJSON(obj) {
 			) {
 				if(cuepointNodeHash[oid] === undefined)
 					console.log(nodeHash[oid].label, oid, nodeHash[oid].text, cuepointNodeHash[oid]);
-				// if(cuepointNodeHash[oid]) {
-				// 	let z = cuepointNodeHash[oid].zone;
-				// 	let ts = cuepointNodeHash[oid].timestamp.toFixed(2);
-				// 	responses[z] = ts;
-				// }
+				if(cuepointNodeHash[oid]) {
+					let z = cuepointNodeHash[oid].zone;
+					let ts = cuepointNodeHash[oid].timestamp.toFixed(2);
+					responses[z] = parseFloat(ts);
+				}
 			}
 			
 		});
 
 		// console.log(zone, nodeHash[cp.nodeID].text, responses)
-		if(!child) {
-			chunks[zone][key] = {responses:{}};
-			currTimeCodes[zone] = cp.timestamp.toFixed(2);
-			chunks[zone][key].responses[key] = {};
+		if(!child) 
+			{chunks[zone][key] = {
+				responses:{}
+			};
+			currTimeCodes[zone] = key;
+			chunks[zone][key].responses[key] = responses;
 		} else {
-			chunks[zone][currTimeCodes[zone]].responses[key] = {};
+			chunks[zone][currTimeCodes[zone]].responses[key] = responses;
 		}
+		chunks[zone][currTimeCodes[zone]].out = cp.loopAt;
+		chunks[zone][currTimeCodes[zone]].ending = parseFloat(key);
+
+		
 
 	});
 
-	// console.log(chunks)
+	var toWrite = "module.exports = "+JSON.stringify(chunks);
+
+	fs.writeFile('parallel.json', toWrite, 'utf8', () => {
+		console.log('SUCCESS');
+	});
 
 
 	// console.log(cuepointHash);
@@ -158,9 +173,9 @@ function getCuepoints(obj) {
 			obj.cuepoints = resObj;
 
 			// NOTE: UNCOMMENT BELOW TO BACK UP CUEPOINTS TO FILE
-			fs.writeFile('cuepoints.bak.txt', resObj.response, 'utf8', () => {
-				console.log('SUCCESS');
-			});
+			// fs.writeFile('cuepoints.bak.txt', resObj.response, 'utf8', () => {
+			// 	console.log('SUCCESS');
+			// });
 
 			resolve(obj);
 		})

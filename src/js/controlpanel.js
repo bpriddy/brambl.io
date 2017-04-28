@@ -196,7 +196,7 @@ class ControlPanel extends Base {
 	}
 
 	updateCuePointsControlPanel(node) {
-		console.log(this.state.currentCuePoint)
+		// console.log(this.state.currentCuePoint)
 		if(node.data.id > -1 && this.state.currentCuePoint) {
 			this.state.currentNode = node;
 			this.$editcuepoint.find(".text").html(node.data.text)
@@ -246,7 +246,7 @@ class ControlPanel extends Base {
 	}
 
 	selectCuePoint(e) {
-		console.log('control panel select cuepoint')
+		// console.log('control panel select cuepoint')
 		this.$cuepoints.find(".list .listitem").removeClass("selected");
 		$(e.currentTarget).closest(".listitem").addClass("selected");
 		let id = parseInt($(e.currentTarget).attr("data-id"));
